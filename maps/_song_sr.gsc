@@ -138,7 +138,7 @@ NachtCounter()
 
     while (!flag("song_nacht"))
     {
-        till_radio += 5;
+        till_radio += 50;
         wait 0.05;
     }
 
