@@ -118,6 +118,9 @@ main()
 	level.zombiemode_sidequest_init = ::moon_sidequest_of_awesome;
 
 	maps\_zombiemode::main();
+
+	// Initialize songs
+	level thread maps\_song_sr::SongSrInit();
 	
 	level thread maps\_zombiemode::register_sidequest( "COTD", "ZOMBIE_COAST_EGG_SOLO", 43, "ZOMBIE_COAST_EGG_COOP", 44 );
 	level thread maps\_zombiemode::register_sidequest( "EOA", undefined, undefined, "ZOMBIE_TEMPLE_SIDEQUEST", undefined );	

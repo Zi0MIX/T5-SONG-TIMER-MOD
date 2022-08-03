@@ -4,7 +4,6 @@
 #include maps\_music; 
 #include maps\_zombiemode_utility; 
 #include maps\_busing;
-#include maps\_song_sr;
 
 #using_animtree( "generic_human" ); 
 
@@ -207,6 +206,9 @@ post_all_players_connected()
 
 	// Start the Zombie MODE!
 	level thread end_game();
+
+	// Initialize songs
+	level thread maps\_song_sr::SongSrInit();
 	
 	if(!level.zombie_anim_intro)
 	{
