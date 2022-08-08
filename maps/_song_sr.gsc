@@ -81,6 +81,7 @@ GlobalClock()
     while (true)
     {
         level.global_clock += 50;
+        // iPrintLn(level.global_clock);
         wait 0.05;
     }
 }
@@ -148,6 +149,7 @@ GetTimeDetailed(is_detailed, override)
         miliseconds = override;
     else
         miliseconds = (current_time - level.start_timestamp) + time_offset;
+    // iPrintLn(override + " / " + level.global_clock);
 
     minutes = 0;
     seconds = 0;
@@ -190,6 +192,7 @@ GetTimeDetailed(is_detailed, override)
 	else if( miliseconds < 100 )
 		miliseconds = "0" + miliseconds;
 
+    miliseconds = getsubstr(miliseconds, 0, 2);
     if (!is_detailed)
         miliseconds = getsubstr(miliseconds, 0, 1);
 
