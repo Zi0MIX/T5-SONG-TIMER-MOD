@@ -17,11 +17,10 @@
 - Built-in timer (seconds) showing on the screen at all times.
 - Back / Strafe speed fix
 - Attempt counter
+- Song lock displayer
 
 ### Plans
 - Progress tracking for song completition
-- Song lock displayer
-
 
 # Changelog
 **empty for now :)**

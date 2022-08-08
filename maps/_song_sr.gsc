@@ -18,6 +18,7 @@ SongSrInit()
     level thread TimerHud();
     level thread SongWatcher();
     level thread AttemptsMain();
+    level thread DisplayBlocker();
     // level thread DevTest();
 }
 
@@ -288,7 +289,7 @@ AttemptsMain()
 	attempt_hud.alpha = 1;
 	attempt_hud.hidewheninmenu = 0;
 	attempt_hud.foreground = 1;
-	attempt_hud.color = (0.6, 0.8, 1);
+	attempt_hud.color = (1, 0.8, 1);
     attempt_hud.label = "Attempts: ";
 
     if (level.script != getDvar("song_attempt_map"))
@@ -299,6 +300,32 @@ AttemptsMain()
 
     attempt_hud setValue(getDvarInt("song_attempts"));
     setDvar("song_attempts", getDvarInt("song_attempts") + 1);
+}
+
+DisplayBlocker()
+{
+    self endon("disconnect");
+    level endon("end_game");
+
+	hud_blocker = NewHudElem();
+	hud_blocker.horzAlign = "right";
+	hud_blocker.vertAlign = "top";
+	hud_blocker.alignX = "right";
+	hud_blocker.alignY = "top";
+	hud_blocker.x = -25;
+	hud_blocker.y = 70;
+	hud_blocker.fontScale = 1.4;
+	hud_blocker.alpha = 1;
+	hud_blocker.hidewheninmenu = 0;
+	hud_blocker.foreground = 1;
+	hud_blocker.color = (1, 0.6, 0.2);
+    hud_blocker.label = "Music override: ";
+
+    while (true)
+    {
+        hud_blocker setValue(level.music_override);
+        wait 0.05;
+    }
 }
 
 DevTest()
