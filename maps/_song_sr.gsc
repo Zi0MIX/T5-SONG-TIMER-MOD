@@ -87,7 +87,7 @@ TimerHud()
 	hud_timer.y = 30;
 	hud_timer.fontScale = 1.7;
 	hud_timer.alpha = 1;
-	hud_timer.hidewheninmenu = 0;
+	hud_timer.hidewheninmenu = 1;
 	hud_timer.foreground = 1;
 	hud_timer.color = (1, 0.8, 1);
 
@@ -116,7 +116,7 @@ SplitHud(song_time, song_name, do_ms, override)
 	hud_split.y = 170 + y_offset;
 	hud_split.fontScale = 1.4;
 	hud_split.alpha = 0;
-	hud_split.hidewheninmenu = 0;
+	hud_split.hidewheninmenu = 1;
 	hud_split.foreground = 1;
 	hud_split.color = (0.6, 0.8, 1);
     hud_split.label = "" + song_name + ": ";
@@ -329,7 +329,7 @@ AttemptsMain()
 	attempt_hud.y = 50;
 	attempt_hud.fontScale = 1.4;
 	attempt_hud.alpha = 1;
-	attempt_hud.hidewheninmenu = 0;
+	attempt_hud.hidewheninmenu = 1;
 	attempt_hud.foreground = 1;
 	attempt_hud.color = (1, 0.8, 1);
     attempt_hud.label = "Attempts: ";
@@ -358,7 +358,7 @@ DisplayBlocker()
 	hud_blocker.y = 70;
 	hud_blocker.fontScale = 1.4;
 	hud_blocker.alpha = 1;
-	hud_blocker.hidewheninmenu = 0;
+	hud_blocker.hidewheninmenu = 1;
 	hud_blocker.foreground = 1;
 	hud_blocker.color = (1, 0.6, 0.2);
     hud_blocker.label = "Music override: ";
@@ -386,7 +386,7 @@ SpeedTracker()
 	hud_velocity.y = 100;
 	hud_velocity.fontScale = 1.4;
 	hud_velocity.alpha = 1;
-	hud_velocity.hidewheninmenu = 0;
+	hud_velocity.hidewheninmenu = 1;
 	hud_velocity.foreground = 1;
 	hud_velocity.color = (0.4, 1, 0.7);
     hud_velocity.label = "Velocity: ";
@@ -412,7 +412,7 @@ GspeedTracker()
 	hud_gspeed.y = 120;
 	hud_gspeed.fontScale = 1.4;
 	hud_gspeed.alpha = 1;
-	hud_gspeed.hidewheninmenu = 0;
+	hud_gspeed.hidewheninmenu = 1;
 	hud_gspeed.foreground = 1;
 	hud_gspeed.color = (0.4, 1, 0.7);
     hud_gspeed.label = "Gspeed: ";
