@@ -28,6 +28,7 @@ ModSetup()
     flag_init("game_started");
 
     level.PATCH_VERSION = 1;
+    level.WAIT_FOR_8BIT = false;
     level.playing_songs = 0;
     level.global_clock = -50;
 }

@@ -126,10 +126,13 @@ waitfor_eightbit_use()
 	
 	self waittill( "bit_hit" );
 
-	level notify("8-bit", self.script_string);
+	if (isDefined(level.WAIT_FOR_8BIT) && !level.WAIT_FOR_8BIT)
+		level notify("8-bit", self.script_string);
 	
 	playsoundatposition( "mus_8bit_notice", self.origin );
 	wait(4);
+	if (isDefined(level.WAIT_FOR_8BIT) && level.WAIT_FOR_8BIT)
+		level notify("8-bit", self.script_string);
 	playsoundatposition( self.script_string, self.origin );
 }
 
