@@ -14,7 +14,7 @@ SongSrInit()
     players = get_players();
     players[0].score = 50000;
 
-    level thread Welcome();
+    level thread Welcome(" TESTING");
     level thread TimerHud();
     level thread SongWatcher();
     level thread AttemptsMain();
@@ -45,8 +45,11 @@ PlayerThreadBlackscreenWaiter()
     return;
 }
 
-Welcome()
+Welcome(override)
 {
+    if (!isDefined(override))
+        override = " V" + level.PATCH_VERSION;
+
 	welcome_hud = NewHudElem();
 	welcome_hud.horzAlign = "center";
 	welcome_hud.vertAlign = "middle";
@@ -60,7 +63,7 @@ Welcome()
 	welcome_hud.foreground = 1;
 	welcome_hud.color = (1, 1, 0.75);
 
-    welcome_hud setText("SongSR Timing V" + level.PATCH_VERSION);
+    welcome_hud setText("SongSR Timing" + override);
     welcome_hud fadeOverTime(0.25);
     welcome_hud.alpha = 1;
     wait 4;
