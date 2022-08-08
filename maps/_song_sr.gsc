@@ -16,7 +16,6 @@ SongSrInit()
 
     level thread Welcome(" TESTING");
     level thread TimerHud();
-    level thread GlobalClock();
     level thread SongWatcher();
     level thread AttemptsMain();
     level thread DisplayBlocker();
@@ -76,16 +75,6 @@ Welcome(override)
     welcome_hud destroy();
 }
 
-GlobalClock()
-{
-    while (true)
-    {
-        level.global_clock += 50;
-        // iPrintLn(level.global_clock);
-        wait 0.05;
-    }
-}
-
 TimerHud()
 {
 	hud_timer = NewHudElem();
@@ -111,11 +100,11 @@ SplitHud(song_time, song_name, do_ms, override)
     else
         y_offset = 20 * level.playing_songs;
 
-
     if (!isDefined(do_ms))
         do_ms = false;
     else if (!do_ms)
         override = 0;
+    iPrintLn(override);
 
 	hud_split = NewHudElem();
 	hud_split.horzAlign = "right";
@@ -202,12 +191,12 @@ GetTimeDetailed(is_detailed, override)
 
 NachtCounter()
 {
-
     while (!flag("song_nacht"))
         wait 0.05;
 
+    song_timestamp = int(getTime() - level.start_timestamp);
     // iPrintLn(till_radio);
-    SplitHud(int(getTime()), SongTranslator("radio"), true, level.global_clock);
+    SplitHud(int(getTime()), SongTranslator("radio"), true, song_timestamp);
 }
 
 SongWatcher()
@@ -248,11 +237,12 @@ SongWatcher()
     else
         return;
 
+    song_timestamp = int(getTime() - level.start_timestamp);
     song_name = SongTranslator();
     level.playing_songs += 1;
 
     // iPrintLn("song activated!!!");
-    SplitHud(int(getTime()), song_name, true, level.global_clock);
+    SplitHud(int(getTime()), song_name, true, song_timestamp);
 }
 
 MoonSongWatcher()
@@ -264,8 +254,9 @@ MoonSongWatcher()
     {
         if (is_true(level.played_extra_song_a7x))
         {
+            song_timestamp = int(getTime() - level.start_timestamp);
             song_name = SongTranslator("nightmare");
-            SplitHud(int(getTime()), song_name, true, level.global_clock);
+            SplitHud(int(getTime()), song_name, true, song_timestamp);
             level.playing_songs += 1;
             break;
         }
@@ -282,8 +273,9 @@ EightBitWatcher()
     while (true)
     {
         level waittill("8-bit", song);
+        song_timestamp = int(getTime() - level.start_timestamp);
         level.playing_songs += 1;
-        SplitHud(int(getTime()), SongTranslator(song), true, level.global_clock);
+        SplitHud(int(getTime()), SongTranslator(song), true, song_timestamp);
     }
 }
 
