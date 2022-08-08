@@ -16,11 +16,12 @@
     - Accuracy up to one decimal point (exception for Nacht radio, accuracy is up to .05 seconds. Any lower number realistically doesn't matter as the script for checking for song activation runs at that clock.)
 - Built-in timer (seconds) showing on the screen at all times.
 - Back / Strafe speed fix
+- Attempt counter
 
 ### Plans
 - Progress tracking for song completition
 - Song lock displayer
-- Attempt counter
+
 
 # Changelog
 **empty for now :)**

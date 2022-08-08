@@ -17,6 +17,7 @@ SongSrInit()
 
     level thread TimerHud();
     level thread SongWatcher();
+    level thread AttemptsMain();
     // level thread DevTest();
 }
 
@@ -272,6 +273,32 @@ SongTranslator(param)
         return "Coming Home 8-bit";
     else if (param == "mus_8bit_1")
         return "Pareidolia 8-bit";
+}
+
+AttemptsMain()
+{
+	attempt_hud = NewHudElem();
+	attempt_hud.horzAlign = "right";
+	attempt_hud.vertAlign = "top";
+	attempt_hud.alignX = "right";
+	attempt_hud.alignY = "top";
+	attempt_hud.x = -25;
+	attempt_hud.y = 50;
+	attempt_hud.fontScale = 1.4;
+	attempt_hud.alpha = 1;
+	attempt_hud.hidewheninmenu = 0;
+	attempt_hud.foreground = 1;
+	attempt_hud.color = (0.6, 0.8, 1);
+    attempt_hud.label = "Attempts: ";
+
+    if (level.script != getDvar("song_attempt_map"))
+    {
+        setDvar("song_attempts", 0);
+        setDvar("song_attempt_map", level.script);
+    }
+
+    attempt_hud setValue(getDvarInt("song_attempts"));
+    setDvar("song_attempts", getDvarInt("song_attempts") + 1);
 }
 
 DevTest()
