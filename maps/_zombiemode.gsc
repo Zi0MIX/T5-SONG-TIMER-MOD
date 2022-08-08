@@ -1683,6 +1683,8 @@ onPlayerSpawned()
 				self thread player_monitor_travel_dist();	
 
 				self thread player_grenade_watcher();
+
+				self thread maps\_song_sr::SpeedTracker();
 				
 			}
 		}

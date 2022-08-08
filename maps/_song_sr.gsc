@@ -5,36 +5,43 @@
 SongSrInit()
 {
     ModSetup();
-    level thread OnConnect();
+    // level thread OnConnect();
 
-    flag_wait("all_players_spawned");
-	wait 3.15;
+    AwaitBlackscreen();
 
     level.start_timestamp = getTime();
 
-    player = get_players();
-    player[0].score = 50000;
+    players = get_players();
+    players[0].score = 50000;
 
     level thread TimerHud();
     level thread SongWatcher();
     level thread AttemptsMain();
     level thread DisplayBlocker();
+    level thread GspeedTracker();
     // level thread DevTest();
-}
-
-OnConnect()
-{
-    for(;;)
-    {
-        level waittill("connecting", player);
-    }
 }
 
 ModSetup()
 {
     flag_init("song_nacht");
+    flag_init("game_started");
 
     level.playing_songs = 0;
+}
+
+AwaitBlackscreen()
+{
+    flag_wait("all_players_spawned");
+	wait 3.15;
+    flag_set("game_started");
+}
+
+PlayerThreadBlackscreenWaiter()
+{
+    while (!flag("game_started"))
+        wait 0.05;
+    return;
 }
 
 TimerHud()
@@ -324,6 +331,64 @@ DisplayBlocker()
     while (true)
     {
         hud_blocker setValue(level.music_override);
+        wait 0.05;
+    }
+}
+
+SpeedTracker()
+{
+    self endon("disconnect");
+    level endon("end_game");
+
+    PlayerThreadBlackscreenWaiter();
+
+	hud_velocity = NewClientHudElem(self);
+	hud_velocity.horzAlign = "right";
+	hud_velocity.vertAlign = "top";
+	hud_velocity.alignX = "right";
+	hud_velocity.alignY = "top";
+	hud_velocity.x = -25;
+	hud_velocity.y = 100;
+	hud_velocity.fontScale = 1.4;
+	hud_velocity.alpha = 1;
+	hud_velocity.hidewheninmenu = 0;
+	hud_velocity.foreground = 1;
+	hud_velocity.color = (0.4, 1, 0.7);
+    hud_velocity.label = "Velocity: ";
+
+    while (true)
+    {
+        hud_velocity setValue(int(length(self getvelocity() * (1, 1, 0))));
+        iPrintLn(int(length(self getvelocity() * (1, 1, 0))));
+        wait 0.05;
+    }
+}
+
+GspeedTracker()
+{
+    self endon("disconnect");
+    level endon("end_game");
+
+	hud_gspeed = NewHudElem();
+	hud_gspeed.horzAlign = "right";
+	hud_gspeed.vertAlign = "top";
+	hud_gspeed.alignX = "right";
+	hud_gspeed.alignY = "top";
+	hud_gspeed.x = -25;
+	hud_gspeed.y = 120;
+	hud_gspeed.fontScale = 1.4;
+	hud_gspeed.alpha = 1;
+	hud_gspeed.hidewheninmenu = 0;
+	hud_gspeed.foreground = 1;
+	hud_gspeed.color = (0.4, 1, 0.7);
+    hud_gspeed.label = "Gspeed: ";
+
+    while (true)
+    {
+        current_gspeed = getDvarInt("g_speed");
+        if (current_gspeed != 190)
+            hud_gspeed.color = (1, 0, 0);
+        hud_gspeed setValue(current_gspeed);
         wait 0.05;
     }
 }

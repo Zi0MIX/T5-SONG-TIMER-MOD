@@ -18,6 +18,7 @@
 - Back / Strafe speed fix
 - Attempt counter
 - Song lock displayer
+- Velocity meter & Gspeed displayer
 
 ### Plans
 - Progress tracking for song completition
