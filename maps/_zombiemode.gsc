@@ -1550,7 +1550,10 @@ onPlayerConnect_clientDvars()
 		"miniscoreboardhide", "1",
 		"cg_drawSpectatorMessages", "0",
 		"ui_hud_hardcore", "0",
-		"playerPushAmount", "1" );
+		"playerPushAmount", "1",
+		"player_backSpeedScale", "1",
+		"player_strafeSpeedScale", "1",
+		"player_sprintStrafeSpeedScale", "1" );
 
 	self SetDepthOfField( 0, 0, 512, 4000, 4, 0 );
 
