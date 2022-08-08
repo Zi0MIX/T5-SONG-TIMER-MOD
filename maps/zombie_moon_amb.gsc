@@ -126,7 +126,6 @@ waitfor_eightbit_use()
 	
 	self waittill( "bit_hit" );
 
-	iPrintLn("8bit");
 	level notify("8-bit", self.script_string);
 	
 	playsoundatposition( "mus_8bit_notice", self.origin );

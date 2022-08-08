@@ -14,12 +14,12 @@ SongSrInit()
     players = get_players();
     players[0].score = 50000;
 
+    level thread Welcome();
     level thread TimerHud();
     level thread SongWatcher();
     level thread AttemptsMain();
     level thread DisplayBlocker();
     level thread GspeedTracker();
-    // level thread DevTest();
 }
 
 ModSetup()
@@ -27,6 +27,7 @@ ModSetup()
     flag_init("song_nacht");
     flag_init("game_started");
 
+    level.PATCH_VERSION = 1;
     level.playing_songs = 0;
 }
 
@@ -42,6 +43,32 @@ PlayerThreadBlackscreenWaiter()
     while (!flag("game_started"))
         wait 0.05;
     return;
+}
+
+Welcome()
+{
+	welcome_hud = NewHudElem();
+	welcome_hud.horzAlign = "center";
+	welcome_hud.vertAlign = "middle";
+	welcome_hud.alignX = "center";
+	welcome_hud.alignY = "middle";
+	welcome_hud.x = 0;
+	welcome_hud.y = -120;
+	welcome_hud.fontScale = 1.6;
+	welcome_hud.alpha = 0;
+	welcome_hud.hidewheninmenu = 0;
+	welcome_hud.foreground = 1;
+	welcome_hud.color = (1, 1, 0.75);
+
+    welcome_hud setText("SongSR Timing V" + level.PATCH_VERSION);
+    welcome_hud fadeOverTime(0.25);
+    welcome_hud.alpha = 1;
+    wait 4;
+    welcome_hud fadeOverTime(0.25);
+    welcome_hud.alpha = 0;
+
+    wait 1;
+    welcome_hud destroy();
 }
 
 TimerHud()
@@ -359,7 +386,6 @@ SpeedTracker()
     while (true)
     {
         hud_velocity setValue(int(length(self getvelocity() * (1, 1, 0))));
-        iPrintLn(int(length(self getvelocity() * (1, 1, 0))));
         wait 0.05;
     }
 }
@@ -390,15 +416,5 @@ GspeedTracker()
             hud_gspeed.color = (1, 0, 0);
         hud_gspeed setValue(current_gspeed);
         wait 0.05;
-    }
-}
-
-DevTest()
-{
-    while (true)
-    {
-        if (isDefined(level.playing_songs))
-            iPrintLn(level.playing_songs);
-        wait 0.5;
     }
 }
