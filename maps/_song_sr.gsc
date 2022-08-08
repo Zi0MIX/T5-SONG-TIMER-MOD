@@ -20,6 +20,7 @@ SongSrInit()
     level thread AttemptsMain();
     level thread DisplayBlocker();
     level thread GspeedTracker();
+    level thread PointDropTracker();
 }
 
 ModSetup()
@@ -105,7 +106,7 @@ SplitHud(song_time, song_name, do_ms, override)
         do_ms = false;
     else if (!do_ms)
         override = 0;
-    iPrintLn(override);
+    // iPrintLn(override);
 
 	hud_split = NewHudElem();
 	hud_split.horzAlign = "right";
@@ -383,7 +384,7 @@ SpeedTracker()
 	hud_velocity.alignX = "right";
 	hud_velocity.alignY = "top";
 	hud_velocity.x = -25;
-	hud_velocity.y = 100;
+	hud_velocity.y = 120;
 	hud_velocity.fontScale = 1.4;
 	hud_velocity.alpha = 1;
 	hud_velocity.hidewheninmenu = 1;
@@ -409,7 +410,7 @@ GspeedTracker()
 	hud_gspeed.alignX = "right";
 	hud_gspeed.alignY = "top";
 	hud_gspeed.x = -25;
-	hud_gspeed.y = 120;
+	hud_gspeed.y = 140;
 	hud_gspeed.fontScale = 1.4;
 	hud_gspeed.alpha = 1;
 	hud_gspeed.hidewheninmenu = 1;
@@ -423,6 +424,32 @@ GspeedTracker()
         if (current_gspeed != 190)
             hud_gspeed.color = (1, 0, 0);
         hud_gspeed setValue(current_gspeed);
+        wait 0.05;
+    }
+}
+
+PointDropTracker()
+{
+    self endon("disconnect");
+    level endon("end_game");
+
+	hud_drop = NewHudElem();
+	hud_drop.horzAlign = "right";
+	hud_drop.vertAlign = "top";
+	hud_drop.alignX = "right";
+	hud_drop.alignY = "top";
+	hud_drop.x = -25;
+	hud_drop.y = 90;
+	hud_drop.fontScale = 1.4;
+	hud_drop.alpha = 1;
+	hud_drop.hidewheninmenu = 1;
+	hud_drop.foreground = 1;
+	hud_drop.color = (1, 0.6, 0.2);;
+    hud_drop.label = "Pointdrop coming: ";
+
+    while (true)
+    {
+        hud_drop setValue(level.zombie_vars["zombie_drop_item"]);
         wait 0.05;
     }
 }
