@@ -17,6 +17,7 @@ SongSrInit()
 
     level thread TimerHud();
     level thread SongWatcher();
+    // level thread DevTest();
 }
 
 OnConnect()
@@ -30,6 +31,8 @@ OnConnect()
 ModSetup()
 {
     flag_init("song_nacht");
+
+    level.playing_songs = 0;
 }
 
 TimerHud()
@@ -50,10 +53,13 @@ TimerHud()
 	hud_timer SetTimerUp(0);
 }
 
-SplitHud(song_time, song_name, y_offset, do_ms, override)
+SplitHud(song_time, song_name, do_ms, override)
 {
-    if (!isDefined(y_offset))
+    if (!isDefined(level.playing_songs))
         y_offset = 0;
+    else
+        y_offset = 20 * level.playing_songs;
+
 
     if (!isDefined(do_ms))
         do_ms = false;
@@ -152,13 +158,19 @@ NachtCounter()
     }
 
     // iPrintLn(till_radio);
-    SplitHud(int(getTime()), SongTranslator("radio"), 20, true, till_radio);
+    SplitHud(int(getTime()), SongTranslator("radio"), true, till_radio);
 }
 
 SongWatcher()
 {
     if (isDefined(level.meteor_counter))
     {
+        if (level.script == "zombie_moon")
+        {
+            self thread MoonSongWatcher();
+            self thread EightBitWatcher();
+        }
+
         while (level.meteor_counter < 3)
             wait 0.05;
     }
@@ -187,15 +199,41 @@ SongWatcher()
     else
         return;
 
-    if (level.script == "zombie_moon")
-    {
-        // Extra songs here
-    }
-
     song_name = SongTranslator();
+    level.playing_songs += 1;
 
     // iPrintLn("song activated!!!");
     SplitHud(int(getTime()), song_name);
+}
+
+MoonSongWatcher()
+{
+	self endon("disconnect");
+	level endon("disconnect");
+    
+    while (true)
+    {
+        if (is_true(level.played_extra_song_a7x))
+        {
+            SplitHud(int(getTime()), SongTranslator("nightmare"));
+            level.playing_songs += 1;
+            break;
+        }
+        wait 0.05;
+    }
+}
+
+EightBitWatcher()
+{
+	self endon("disconnect");
+	level endon("disconnect");
+
+    while (true)
+    {
+        level waittill("8-bit", song);
+        level.playing_songs += 1;
+        SplitHud(int(getTime()), SongTranslator(song));
+    }
 }
 
 SongTranslator(param)
@@ -226,4 +264,22 @@ SongTranslator(param)
     }
     else if (param == "radio")
         return "Radio";
+    else if (param == "nightmare")
+        return "Nightmare";
+    else if (param == "mus_8bit_2")
+        return "Re-Damned 8-bit";
+    else if (param == "mus_8bit_0")
+        return "Coming Home 8-bit";
+    else if (param == "mus_8bit_1")
+        return "Pareidolia 8-bit";
+}
+
+DevTest()
+{
+    while (true)
+    {
+        if (isDefined(level.playing_songs))
+            iPrintLn(level.playing_songs);
+        wait 0.5;
+    }
 }
