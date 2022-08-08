@@ -5,6 +5,7 @@
 SongSrInit()
 {
     ModSetup();
+    level thread OnConnect();
 
     flag_wait("all_players_spawned");
 	wait 3.15;
@@ -16,6 +17,14 @@ SongSrInit()
 
     level thread TimerHud();
     level thread SongWatcher();
+}
+
+OnConnect()
+{
+    for(;;)
+    {
+        level waittill("connecting", player);
+    }
 }
 
 ModSetup()
