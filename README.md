@@ -31,4 +31,5 @@
 - White & blue player always spawn on Jug Side
 
 # Changelog
-**empty for now :)**
+### V1.1
+- Applied forgotted check to enable trigger delay for 8-bit songs. All games played on V1.0 for Re-Damned, Pareidolia 8-bit & Coming Home 8-bit should add flat 4 seconds to final time.
