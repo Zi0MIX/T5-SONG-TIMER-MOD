@@ -309,7 +309,7 @@ SongTranslator(param)
     else if (param == "nightmare")
         return "Nightmare";
     else if (param == "mus_8bit_2")
-        return "Re-Damned 8-bit";
+        return "Re-Damned";
     else if (param == "mus_8bit_0")
         return "Coming Home 8-bit";
     else if (param == "mus_8bit_1")
