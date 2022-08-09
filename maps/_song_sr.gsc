@@ -27,7 +27,7 @@ ModSetup()
     flag_init("song_nacht");
     flag_init("game_started");
 
-    level.PATCH_VERSION = 1;
+    level.PATCH_VERSION = 1.1;
     level.WAIT_FOR_8BIT = true;
     level.playing_songs = 0;
 }
