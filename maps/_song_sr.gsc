@@ -5,16 +5,15 @@
 SongSrInit()
 {
     ModSetup();
-    // level thread OnConnect();
 
     AwaitBlackscreen();
 
     level.start_timestamp = getTime();
 
-    players = get_players();
-    players[0].score = 50000;
+    // players = get_players();
+    // players[0].score = 50000;
 
-    level thread Welcome(" TESTING");
+    level thread Welcome();
     level thread TimerHud();
     level thread SongWatcher();
     level thread AttemptsMain();
@@ -31,7 +30,6 @@ ModSetup()
     level.PATCH_VERSION = 1;
     level.WAIT_FOR_8BIT = false;
     level.playing_songs = 0;
-    level.global_clock = -50;
 }
 
 AwaitBlackscreen()
@@ -140,7 +138,7 @@ GetTimeDetailed(is_detailed, override)
         miliseconds = override;
     else
         miliseconds = (current_time - level.start_timestamp) + time_offset;
-    // iPrintLn(override + " / " + level.global_clock);
+    // iPrintLn(override);
 
     minutes = 0;
     seconds = 0;
@@ -197,7 +195,6 @@ NachtCounter()
         wait 0.05;
 
     song_timestamp = int(getTime() - level.start_timestamp);
-    // iPrintLn(till_radio);
     SplitHud(int(getTime()), SongTranslator("radio"), true, song_timestamp);
 }
 
