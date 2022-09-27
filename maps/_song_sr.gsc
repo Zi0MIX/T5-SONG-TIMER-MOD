@@ -375,23 +375,79 @@ SpeedTracker()
 
     PlayerThreadBlackscreenWaiter();
 
-	hud_velocity = NewClientHudElem(self);
-	hud_velocity.horzAlign = "right";
-	hud_velocity.vertAlign = "top";
-	hud_velocity.alignX = "right";
-	hud_velocity.alignY = "top";
-	hud_velocity.x = -25;
-	hud_velocity.y = 120;
-	hud_velocity.fontScale = 1.4;
-	hud_velocity.alpha = 1;
-	hud_velocity.hidewheninmenu = 1;
-	hud_velocity.foreground = 1;
-	hud_velocity.color = (0.4, 1, 0.7);
-    hud_velocity.label = "Velocity: ";
+	hud_velocity_label = NewClientHudElem(self);
+	hud_velocity_label.horzAlign = "right";
+	hud_velocity_label.vertAlign = "top";
+	hud_velocity_label.alignX = "right";
+	hud_velocity_label.alignY = "top";
+	hud_velocity_label.x = -48;
+	hud_velocity_label.y = 120;
+	hud_velocity_label.fontScale = 1.4;
+	hud_velocity_label.alpha = 1;
+	hud_velocity_label.hidewheninmenu = 1;
+	hud_velocity_label.foreground = 1;
+    hud_velocity_label setText("VELOCITY: ");
+
+	hud_velocity_value = NewClientHudElem(self);
+	hud_velocity_value.horzAlign = "right";
+	hud_velocity_value.vertAlign = "top";
+	hud_velocity_value.alignX = "right";
+	hud_velocity_value.alignY = "top";
+	hud_velocity_value.x = -25;
+	hud_velocity_value.y = 120;
+	hud_velocity_value.fontScale = 1.4;
+	hud_velocity_value.alpha = 1;
+	hud_velocity_value.hidewheninmenu = 1;
+	hud_velocity_value.foreground = 1;
 
     while (true)
     {
-        hud_velocity setValue(int(length(self getvelocity() * (1, 1, 0))));
+        velocity = int(length(self getvelocity() * (1, 1, 0)));
+
+        // Scale from IW3 / IW4 patches
+        if (velocity < 330)
+        {
+            hud_velocity_value.color = (0.4, 1, 0.7);
+            hud_velocity_value.glowcolor = (0.2, 0.7, 0.4);
+        }
+
+        else if (velocity <= 340)
+        {
+            hud_velocity_value.color = (0.8, 1, 0.6);
+            hud_velocity_value.glowcolor = (0.6, 0.7, 0.4);
+        }
+
+        else if (velocity <= 350)
+        {
+            hud_velocity_value.color = (1, 1, 0.6);
+            hud_velocity_value.glowcolor = (0.7, 0.7, 0.4);
+        }
+
+        else if (velocity <= 360)
+        {
+            hud_velocity_value.color = (1, 0.8, 0.4);
+            hud_velocity_value.glowcolor = (0.7, 0.6, 0.2);
+        }
+
+        else if (velocity <= 370)
+        {
+            hud_velocity_value.color = (1, 0.6, 0.2);
+            hud_velocity_value.glowcolor = (0.7, 0.4, 0.1);
+        }
+
+        else if (velocity <= 380)
+        {
+            hud_velocity_value.color = (1, 0.2, 0);
+            hud_velocity_value.glowcolor = (0.7, 0.1, 0);
+        }
+        
+        else
+        {
+            hud_velocity_value.color = (0.6, 0, 0);
+            hud_velocity_value.glowcolor = (0.3, 0, 0);
+        }
+        
+        hud_velocity_value setValue(velocity);
         wait 0.05;
     }
 }
@@ -401,26 +457,38 @@ GspeedTracker()
     self endon("disconnect");
     level endon("end_game");
 
-	hud_gspeed = NewHudElem();
-	hud_gspeed.horzAlign = "right";
-	hud_gspeed.vertAlign = "top";
-	hud_gspeed.alignX = "right";
-	hud_gspeed.alignY = "top";
-	hud_gspeed.x = -25;
-	hud_gspeed.y = 140;
-	hud_gspeed.fontScale = 1.4;
-	hud_gspeed.alpha = 1;
-	hud_gspeed.hidewheninmenu = 1;
-	hud_gspeed.foreground = 1;
-	hud_gspeed.color = (0.4, 1, 0.7);
-    hud_gspeed.label = "Gspeed: ";
+	hud_gspeed_label = NewHudElem();
+	hud_gspeed_label.horzAlign = "right";
+	hud_gspeed_label.vertAlign = "top";
+	hud_gspeed_label.alignX = "right";
+	hud_gspeed_label.alignY = "top";
+	hud_gspeed_label.x = -48;
+	hud_gspeed_label.y = 140;
+	hud_gspeed_label.fontScale = 1.4;
+	hud_gspeed_label.alpha = 1;
+	hud_gspeed_label.hidewheninmenu = 1;
+	hud_gspeed_label.foreground = 1;
+    hud_gspeed_label setText("GSPEED: ");
+
+	hud_gspeed_value = NewHudElem();
+	hud_gspeed_value.horzAlign = "right";
+	hud_gspeed_value.vertAlign = "top";
+	hud_gspeed_value.alignX = "right";
+	hud_gspeed_value.alignY = "top";
+	hud_gspeed_value.x = -25;
+	hud_gspeed_value.y = 140;
+	hud_gspeed_value.fontScale = 1.4;
+	hud_gspeed_value.alpha = 1;
+	hud_gspeed_value.hidewheninmenu = 1;
+	hud_gspeed_value.foreground = 1;
+	hud_gspeed_value.color = (0.4, 1, 0.7);
 
     while (true)
     {
         current_gspeed = getDvarInt("g_speed");
         if (current_gspeed != 190)
-            hud_gspeed.color = (1, 0, 0);
-        hud_gspeed setValue(current_gspeed);
+            hud_gspeed_value.color = (1, 0, 0);
+        hud_gspeed_value setValue(current_gspeed);
         wait 0.05;
     }
 }
