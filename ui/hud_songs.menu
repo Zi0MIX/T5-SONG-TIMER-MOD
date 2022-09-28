@@ -1,0 +1,61 @@
+#include "ui/menudef.h"
+
+#define IS_ZM_HUD_VISIBLE dvarBool( #"ammoCounterHide" ) == 0 && dvarBool( #"hud_missionFailed" ) == 0 && !ui_active() && (dvarint( #"zombiemode" ) == 1 && dvarint( #"zombietron" ) == 0) && !dvarInt( #"splitscreen" ) && dvarBool( #"zm_song_start" ) == 1
+
+{
+    #define OFFSET              16
+    #define LABEL_COLOR         0.7 0.7 0.7 1
+
+    menuDef
+    {
+        name                "hud_labels"
+        rect                0 0 0 0 HORIZONTAL_ALIGN_USER_RIGHT VERTICAL_ALIGN_USER_TOP
+        fullscreen          0
+        visible             when( IS_ZM_HUD_VISIBLE )
+
+        itemDef
+        {
+            name                "pointdrop_label"
+            type				ITEM_TYPE_TEXT
+            rect 				-48 (90 + OFFSET) 0 0
+            forecolor			LABEL_COLOR
+            textscale			TEXTSIZE_DEFAULT
+            textstyle			ITEM_TEXTSTYLE_SHADOWED
+            textfont			UI_FONT_NORMAL
+            textalign			ITEM_ALIGN_RIGHT
+            exp text			(locString("SONGS_POINTDROP_LABEL"))
+            visible		        1
+            decoration
+        }
+
+        itemDef
+        {
+            name                "velocity_label"
+            type				ITEM_TYPE_TEXT
+            rect 				-48 (120 + OFFSET) 0 0
+            forecolor			LABEL_COLOR
+            textscale			TEXTSIZE_DEFAULT
+            textstyle			ITEM_TEXTSTYLE_SHADOWED
+            textfont			UI_FONT_NORMAL
+            textalign			ITEM_ALIGN_RIGHT
+            exp text			(locString("SONGS_VELOCITY_LABEL"))
+            visible				1
+            decoration
+        }
+
+        itemDef
+        {
+            name                "gspeed_label"
+            type				ITEM_TYPE_TEXT
+            rect 				-48 (140 + OFFSET) 0 0
+            forecolor			LABEL_COLOR
+            textscale			TEXTSIZE_DEFAULT
+            textstyle			ITEM_TEXTSTYLE_SHADOWED
+            textfont			UI_FONT_NORMAL
+            textalign			ITEM_ALIGN_RIGHT
+            exp text			(locString("SONGS_GSPEED_LABEL"))
+            visible				1
+            decoration
+        }
+    }
+}

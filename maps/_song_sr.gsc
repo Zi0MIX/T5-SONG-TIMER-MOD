@@ -27,6 +27,8 @@ ModSetup()
     flag_init("song_nacht");
     flag_init("game_started");
 
+    setDvar("zm_song_start", 0);
+
     level.PATCH_VERSION = 1.1;
     level.WAIT_FOR_8BIT = true;
     level.playing_songs = 0;
@@ -37,6 +39,7 @@ AwaitBlackscreen()
     flag_wait("all_players_spawned");
 	wait 3.15;
     flag_set("game_started");
+    setDvar("zm_song_start", 1);
 }
 
 PlayerThreadBlackscreenWaiter()
@@ -375,19 +378,6 @@ SpeedTracker()
 
     PlayerThreadBlackscreenWaiter();
 
-	hud_velocity_label = NewClientHudElem(self);
-	hud_velocity_label.horzAlign = "right";
-	hud_velocity_label.vertAlign = "top";
-	hud_velocity_label.alignX = "right";
-	hud_velocity_label.alignY = "top";
-	hud_velocity_label.x = -48;
-	hud_velocity_label.y = 120;
-	hud_velocity_label.fontScale = 1.4;
-	hud_velocity_label.alpha = 1;
-	hud_velocity_label.hidewheninmenu = 1;
-	hud_velocity_label.foreground = 1;
-    hud_velocity_label setText("VELOCITY: ");
-
 	hud_velocity_value = NewClientHudElem(self);
 	hud_velocity_value.horzAlign = "right";
 	hud_velocity_value.vertAlign = "top";
@@ -457,19 +447,6 @@ GspeedTracker()
     self endon("disconnect");
     level endon("end_game");
 
-	hud_gspeed_label = NewHudElem();
-	hud_gspeed_label.horzAlign = "right";
-	hud_gspeed_label.vertAlign = "top";
-	hud_gspeed_label.alignX = "right";
-	hud_gspeed_label.alignY = "top";
-	hud_gspeed_label.x = -48;
-	hud_gspeed_label.y = 140;
-	hud_gspeed_label.fontScale = 1.4;
-	hud_gspeed_label.alpha = 1;
-	hud_gspeed_label.hidewheninmenu = 1;
-	hud_gspeed_label.foreground = 1;
-    hud_gspeed_label setText("GSPEED: ");
-
 	hud_gspeed_value = NewHudElem();
 	hud_gspeed_value.horzAlign = "right";
 	hud_gspeed_value.vertAlign = "top";
@@ -509,8 +486,7 @@ PointDropTracker()
 	hud_drop.alpha = 1;
 	hud_drop.hidewheninmenu = 1;
 	hud_drop.foreground = 1;
-	hud_drop.color = (1, 0.6, 0.2);;
-    hud_drop.label = "Pointdrop coming: ";
+	hud_drop.color = (1, 0.6, 0.2);
 
     while (true)
     {
