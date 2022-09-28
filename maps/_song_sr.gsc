@@ -22,6 +22,10 @@ SongSrInit()
 
 ModSetup()
 {
+    PrecacheString(&"SONGS_ATTEMPTS");
+    PrecacheString(&"SONGS_YES");
+    PrecacheString(&"SONGS_NO");
+
     flag_init("song_nacht");
     flag_init("game_started");
 
@@ -94,7 +98,7 @@ TimerHud()
 	hud_timer.alignY = "top";
 	hud_timer.x = -25;
 	hud_timer.y = 30;
-	hud_timer.fontScale = 1.7;
+	hud_timer.fontScale = 1.8;
 	hud_timer.alpha = 1;
 	hud_timer.hidewheninmenu = 1;
 	hud_timer.foreground = 1;
@@ -334,13 +338,12 @@ AttemptsMain()
 	attempt_hud.alignX = "right";
 	attempt_hud.alignY = "top";
 	attempt_hud.x = -25;
-	attempt_hud.y = 50;
+	attempt_hud.y = 80;
 	attempt_hud.fontScale = 1.4;
 	attempt_hud.alpha = 1;
 	attempt_hud.hidewheninmenu = 1;
 	attempt_hud.foreground = 1;
 	attempt_hud.color = (1, 0.8, 1);
-    attempt_hud.label = "Attempts: ";
 
     if (level.script != getDvar("song_attempt_map"))
     {
@@ -391,7 +394,7 @@ SpeedTracker()
 	hud_velocity_value.alignX = "right";
 	hud_velocity_value.alignY = "top";
 	hud_velocity_value.x = -25;
-	hud_velocity_value.y = 120;
+	hud_velocity_value.y = 130;
 	hud_velocity_value.fontScale = 1.4;
 	hud_velocity_value.alpha = 1;
 	hud_velocity_value.hidewheninmenu = 1;
@@ -460,7 +463,7 @@ GspeedTracker()
 	hud_gspeed_value.alignX = "right";
 	hud_gspeed_value.alignY = "top";
 	hud_gspeed_value.x = -25;
-	hud_gspeed_value.y = 140;
+	hud_gspeed_value.y = 150;
 	hud_gspeed_value.fontScale = 1.4;
 	hud_gspeed_value.alpha = 1;
 	hud_gspeed_value.hidewheninmenu = 1;
@@ -471,7 +474,7 @@ GspeedTracker()
     {
         current_gspeed = getDvarInt("g_speed");
         if (current_gspeed != 190)
-            hud_gspeed_value.color = (1, 0, 0);
+            hud_gspeed_value.color = (0.9, 0, 0);
         hud_gspeed_value setValue(current_gspeed);
         wait 0.05;
     }
@@ -482,22 +485,32 @@ PointDropTracker()
     self endon("disconnect");
     level endon("end_game");
 
-	hud_drop = NewHudElem();
-	hud_drop.horzAlign = "right";
-	hud_drop.vertAlign = "top";
-	hud_drop.alignX = "right";
-	hud_drop.alignY = "top";
-	hud_drop.x = -25;
-	hud_drop.y = 90;
-	hud_drop.fontScale = 1.4;
-	hud_drop.alpha = 1;
-	hud_drop.hidewheninmenu = 1;
-	hud_drop.foreground = 1;
-	hud_drop.color = (1, 0.6, 0.2);
+	hud_drop_value = NewHudElem();
+	hud_drop_value.horzAlign = "right";
+	hud_drop_value.vertAlign = "top";
+	hud_drop_value.alignX = "right";
+	hud_drop_value.alignY = "top";
+	hud_drop_value.x = -25;
+	hud_drop_value.y = 100;
+	hud_drop_value.fontScale = 1.4;
+	hud_drop_value.alpha = 1;
+	hud_drop_value.hidewheninmenu = 1;
+	hud_drop_value.foreground = 1;
+	hud_drop_value.color = (1, 0.6, 0.2);
 
     while (true)
     {
-        hud_drop setValue(level.zombie_vars["zombie_drop_item"]);
+        if (level.zombie_vars["zombie_drop_item"])
+        {
+            hud_drop_value.color = (0.4, 1, 0.7);
+            hud_drop_value setText(&"SONGS_YES");
+        }
+        else
+        {
+            hud_drop_value.color = (0.9, 0.5, 0);
+            hud_drop_value setText(&"SONGS_NO");
+        }
+
         wait 0.05;
     }
 }
