@@ -9,9 +9,7 @@ SongSrInit()
     AwaitBlackscreen();
 
     level.start_timestamp = getTime();
-
-    // players = get_players();
-    // players[0].score = 50000;
+    level.song_debug = false;
 
     level thread Welcome();
     level thread TimerHud();
@@ -40,6 +38,15 @@ AwaitBlackscreen()
 	wait 3.15;
     flag_set("game_started");
     setDvar("zm_song_start", 1);
+
+    if (isDefined(level.song_debug) && level.song_debug)
+    {
+        players = get_players();
+        for (i = 0; i < players.size; i++)
+        {
+            players[i].score = 50005;
+        }
+    }
 }
 
 PlayerThreadBlackscreenWaiter()
