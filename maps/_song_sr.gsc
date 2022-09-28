@@ -15,7 +15,7 @@ SongSrInit()
     level thread TimerHud();
     level thread SongWatcher();
     level thread AttemptsMain();
-    level thread DisplayBlocker();
+    // level thread DisplayBlocker();
     level thread GspeedTracker();
     level thread PointDropTracker();
 }
