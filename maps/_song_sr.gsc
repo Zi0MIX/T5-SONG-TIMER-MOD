@@ -9,16 +9,17 @@ SongSrInit()
     AwaitBlackscreen();
 
     level.start_timestamp = getTime();
-    level.song_debug = false;
 
     level thread Welcome();
+    level thread SongInit();
     level thread TimerHud();
-    level thread SongWatcher();
     level thread AttemptsMain();
     // level thread DisplayBlocker();
     level thread GspeedTracker();
     level thread PointDropTracker();
 }
+
+// Setup
 
 ModSetup()
 {
@@ -31,9 +32,15 @@ ModSetup()
 
     setDvar("zm_song_start", 0);
 
-    level.PATCH_VERSION = 1.1;
+    if (!isDefined(getDvar("split")))
+        setDvar("split", "Select a split");
+
+    level.PATCH_VERSION = 2;
     level.WAIT_FOR_8BIT = true;
+    level.SONG_DEBUG = true;
+
     level.playing_songs = 0;
+    level.longest_splits = 0;
 }
 
 AwaitBlackscreen()
@@ -43,7 +50,7 @@ AwaitBlackscreen()
     flag_set("game_started");
     setDvar("zm_song_start", 1);
 
-    if (isDefined(level.song_debug) && level.song_debug)
+    if (isDefined(level.SONG_DEBUG) && level.SONG_DEBUG)
     {
         players = get_players();
         for (i = 0; i < players.size; i++)
@@ -58,84 +65,6 @@ PlayerThreadBlackscreenWaiter()
     while (!flag("game_started"))
         wait 0.05;
     return;
-}
-
-Welcome(override)
-{
-    if (!isDefined(override))
-        override = " V" + level.PATCH_VERSION;
-
-	welcome_hud = NewHudElem();
-	welcome_hud.horzAlign = "center";
-	welcome_hud.vertAlign = "middle";
-	welcome_hud.alignX = "center";
-	welcome_hud.alignY = "middle";
-	welcome_hud.x = 0;
-	welcome_hud.y = -120;
-	welcome_hud.fontScale = 1.6;
-	welcome_hud.alpha = 0;
-	welcome_hud.hidewheninmenu = 0;
-	welcome_hud.foreground = 1;
-	welcome_hud.color = (1, 1, 0.75);
-
-    welcome_hud setText("SongSR Timing" + override);
-    welcome_hud fadeOverTime(0.25);
-    welcome_hud.alpha = 1;
-    wait 4;
-    welcome_hud fadeOverTime(0.25);
-    welcome_hud.alpha = 0;
-
-    wait 1;
-    welcome_hud destroy();
-}
-
-TimerHud()
-{
-	hud_timer = NewHudElem();
-	hud_timer.horzAlign = "right";
-	hud_timer.vertAlign = "top";
-	hud_timer.alignX = "right";
-	hud_timer.alignY = "top";
-	hud_timer.x = -25;
-	hud_timer.y = 30;
-	hud_timer.fontScale = 1.8;
-	hud_timer.alpha = 1;
-	hud_timer.hidewheninmenu = 1;
-	hud_timer.foreground = 1;
-	hud_timer.color = (1, 0.8, 1);
-
-	hud_timer SetTimerUp(0);
-}
-
-SplitHud(song_time, song_name, do_ms, override)
-{
-    if (!isDefined(level.playing_songs))
-        y_offset = 0;
-    else
-        y_offset = 20 * level.playing_songs;
-
-    if (!isDefined(do_ms))
-        do_ms = false;
-    else if (!do_ms)
-        override = 0;
-    // iPrintLn(override);
-
-	hud_split = NewHudElem();
-	hud_split.horzAlign = "right";
-	hud_split.vertAlign = "top";
-	hud_split.alignX = "right";
-	hud_split.alignY = "top";
-	hud_split.x = -25;
-	hud_split.y = 170 + y_offset;
-	hud_split.fontScale = 1.4;
-	hud_split.alpha = 0;
-	hud_split.hidewheninmenu = 1;
-	hud_split.foreground = 1;
-	hud_split.color = (0.6, 0.8, 1);
-    hud_split.label = "" + song_name + ": ";
-    
-    hud_split setText(GetTimeDetailed(do_ms, override));
-	hud_split.alpha = 1;
 }
 
 GetTimeDetailed(is_detailed, override)
@@ -202,132 +131,53 @@ GetTimeDetailed(is_detailed, override)
 	return "" + minutes + ":" + seconds + "." + miliseconds; 
 }
 
+// HUD Elements
 
-NachtCounter()
+Welcome(override)
 {
-    while (!flag("song_nacht"))
-        wait 0.05;
+    if (!isDefined(override))
+        override = " V" + level.PATCH_VERSION;
 
-    song_timestamp = int(getTime() - level.start_timestamp);
-    SplitHud(int(getTime()), SongTranslator("radio"), true, song_timestamp);
+	welcome_hud = NewHudElem();
+	welcome_hud.horzAlign = "center";
+	welcome_hud.vertAlign = "middle";
+	welcome_hud.alignX = "center";
+	welcome_hud.alignY = "middle";
+	welcome_hud.x = 0;
+	welcome_hud.y = -120;
+	welcome_hud.fontScale = 1.6;
+	welcome_hud.alpha = 0;
+	welcome_hud.hidewheninmenu = 0;
+	welcome_hud.foreground = 1;
+	welcome_hud.color = (1, 1, 0.75);
+
+    welcome_hud setText("SongSR Timing" + override);
+    welcome_hud fadeOverTime(0.25);
+    welcome_hud.alpha = 1;
+    wait 4;
+    welcome_hud fadeOverTime(0.25);
+    welcome_hud.alpha = 0;
+
+    wait 1;
+    welcome_hud destroy();
 }
 
-SongWatcher()
+TimerHud()
 {
-    if (isDefined(level.meteor_counter))
-    {
-        if (level.script == "zombie_moon")
-        {
-            self thread MoonSongWatcher();
-            self thread EightBitWatcher();
-        }
+	hud_timer = NewHudElem();
+	hud_timer.horzAlign = "right";
+	hud_timer.vertAlign = "top";
+	hud_timer.alignX = "right";
+	hud_timer.alignY = "top";
+	hud_timer.x = -25;
+	hud_timer.y = 30;
+	hud_timer.fontScale = 1.8;
+	hud_timer.alpha = 1;
+	hud_timer.hidewheninmenu = 1;
+	hud_timer.foreground = 1;
+	hud_timer.color = (1, 0.8, 1);
 
-        while (level.meteor_counter < 3)
-            wait 0.05;
-    }
-    else if (isDefined(level.teddybear_counter))
-    {
-        while (level.teddybear_counter < 3)
-            wait 0.05;
-    }
-    else if (isDefined(level.phone_counter))
-    {
-        while (level.phone_counter < 3)
-            wait 0.05;
-    }
-    else if (isDefined(level.toilet_counter))
-    {
-        while (level.toilet_counter < 3)
-            wait 0.05;
-    }
-    else if (level.script == "zombie_cod5_prototype")
-    {
-        self thread NachtCounter();
-
-        while (level.egg_damage_counter < 3)
-            wait 0.05;
-    }
-    else
-        return;
-
-    song_timestamp = int(getTime() - level.start_timestamp);
-    song_name = SongTranslator();
-    level.playing_songs += 1;
-
-    // iPrintLn("song activated!!!");
-    SplitHud(int(getTime()), song_name, true, song_timestamp);
-}
-
-MoonSongWatcher()
-{
-	self endon("disconnect");
-	level endon("disconnect");
-    
-    while (true)
-    {
-        if (is_true(level.played_extra_song_a7x))
-        {
-            song_timestamp = int(getTime() - level.start_timestamp);
-            song_name = SongTranslator("nightmare");
-            SplitHud(int(getTime()), song_name, true, song_timestamp);
-            level.playing_songs += 1;
-            break;
-        }
-
-        wait 0.05;
-    }
-}
-
-EightBitWatcher()
-{
-	self endon("disconnect");
-	level endon("disconnect");
-
-    while (true)
-    {
-        level waittill("8-bit", song);
-        song_timestamp = int(getTime() - level.start_timestamp);
-        level.playing_songs += 1;
-        SplitHud(int(getTime()), SongTranslator(song), true, song_timestamp);
-    }
-}
-
-SongTranslator(param)
-{
-    if (!isDefined(param))
-    {
-        if (level.script == "zombie_theater")
-            return "115";
-        else if (level.script == "zombie_pentagon")
-            return "Won't Back Down";
-        else if (level.script == "zombie_cosmodrome")
-            return "Abracadavre";
-        else if (level.script == "zombie_coast")
-            return "Not Ready to Die";
-        else if (level.script == "zombie_temple")
-            return "Pareidolia";
-        else if (level.script == "zombie_moon")
-            return "Coming Home";
-        else if (level.script == "zombie_cod5_prototype")
-            return "Undone";
-        else if (level.script == "zombie_cod5_asylum")
-            return "Lullaby for a Dead Man";
-        else if (level.script == "zombie_cod5_sumpf")
-            return "The One";
-        else if (level.script == "zombie_cod5_factory")
-            return "Beauty of Annihilation";
-        return;
-    }
-    else if (param == "radio")
-        return "Radio";
-    else if (param == "nightmare")
-        return "Nightmare";
-    else if (param == "mus_8bit_2")
-        return "Re-Damned";
-    else if (param == "mus_8bit_0")
-        return "Coming Home 8-bit";
-    else if (param == "mus_8bit_1")
-        return "Pareidolia 8-bit";
+	hud_timer SetTimerUp(0);
 }
 
 AttemptsMain()
@@ -353,6 +203,41 @@ AttemptsMain()
 
     attempt_hud setValue(getDvarInt("song_attempts"));
     setDvar("song_attempts", getDvarInt("song_attempts") + 1);
+}
+
+PointDropTracker()
+{
+    self endon("disconnect");
+    level endon("end_game");
+
+	hud_drop_value = NewHudElem();
+	hud_drop_value.horzAlign = "right";
+	hud_drop_value.vertAlign = "top";
+	hud_drop_value.alignX = "right";
+	hud_drop_value.alignY = "top";
+	hud_drop_value.x = -25;
+	hud_drop_value.y = 100;
+	hud_drop_value.fontScale = 1.4;
+	hud_drop_value.alpha = 1;
+	hud_drop_value.hidewheninmenu = 1;
+	hud_drop_value.foreground = 1;
+	hud_drop_value.color = (1, 0.6, 0.2);
+
+    while (true)
+    {
+        if (level.zombie_vars["zombie_drop_item"])
+        {
+            hud_drop_value.color = (0.4, 1, 0.7);
+            hud_drop_value setText(&"SONGS_YES");
+        }
+        else
+        {
+            hud_drop_value.color = (0.9, 0.5, 0);
+            hud_drop_value setText(&"SONGS_NO");
+        }
+
+        wait 0.05;
+    }
 }
 
 DisplayBlocker()
@@ -480,37 +365,494 @@ GspeedTracker()
     }
 }
 
-PointDropTracker()
+// Songs logic
+
+SongInit()
 {
-    self endon("disconnect");
+	self endon("disconnect");
+	level endon("disconnect");
     level endon("end_game");
 
-	hud_drop_value = NewHudElem();
-	hud_drop_value.horzAlign = "right";
-	hud_drop_value.vertAlign = "top";
-	hud_drop_value.alignX = "right";
-	hud_drop_value.alignY = "top";
-	hud_drop_value.x = -25;
-	hud_drop_value.y = 100;
-	hud_drop_value.fontScale = 1.4;
-	hud_drop_value.alpha = 1;
-	hud_drop_value.hidewheninmenu = 1;
-	hud_drop_value.foreground = 1;
-	hud_drop_value.color = (1, 0.6, 0.2);
+    songs = SpawnSongs();
+
+    if (level.script == "zombie_moon")
+    {
+        split_mode = SelectSplit();
+        iPrintLn("SELECTED: " + split_mode);
+
+        song = undefined;
+        if (split_mode == "coming home")
+        {
+            for (s = 0; s < songs.size; s++)
+            {
+                if (songs[s].title == "Coming Home")
+                    song = songs[s];
+            }
+        }
+
+        else if (split_mode == "nightmare")
+        {
+            for (s = 0; s < songs.size; s++)
+            {
+                if (songs[s].title == "Nightmare")
+                    song = songs[s];
+            }
+        }
+
+        else if (split_mode == "redamned")
+        {
+            for (s = 0; s < songs.size; s++)
+            {
+                if (songs[s].title == "Re-Damned")
+                    song = songs[s];
+            }
+        }
+
+        else if (split_mode == "coming home 8bit")
+        {
+            for (s = 0; s < songs.size; s++)
+            {
+                if (songs[s].title == "Coming Home 8-bit")
+                    song = songs[s];
+            }
+        }
+
+        else if (split_mode == "pareidolia 8bit")
+        {
+            for (s = 0; s < songs.size; s++)
+            {
+                if (songs[s].title == "Pareidolia 8-bit")
+                    song = songs[s];
+            }
+        }
+
+        song.active_splits = 1;
+        song.id = 0;
+        level.longest_splits = song.splits.size;
+        song thread [[song.func]]();
+        song thread [[song.splitfunc]]();
+    }
+    else
+    {
+        for (s = 0; s < songs.size; s++)
+        {
+            songs[s].id = s;
+            songs[s].active_splits = 1;
+
+            if (level.longest_splits < songs[s].splits.size)
+                level.longest_splits = songs[s].splits.size;
+
+            if (isDefined(songs[s].splitfunc))
+                songs[s] thread [[songs[s].splitfunc]]();
+
+            songs[s] thread [[songs[s].func]]();
+        }
+    }
+}
+
+SongWatcher()
+{
+    if (isDefined(level.meteor_counter))
+    {
+        while (level.meteor_counter == 0)
+            wait 0.05;
+        GenerateSplit(self.splits[0], self.active_splits, self.id);
+        self.active_splits++;
+
+        while (level.meteor_counter == 1)
+            wait 0.05;
+        GenerateSplit(self.splits[1], self.active_splits, self.id);
+        self.active_splits++;
+
+        while (level.meteor_counter == 2)
+            wait 0.05;
+    }
+    else if (isDefined(level.teddybear_counter))
+    {
+        while (level.teddybear_counter == 0)
+            wait 0.05;
+        GenerateSplit(self.splits[0], self.active_splits, self.id);
+        self.active_splits++;
+
+        while (level.teddybear_counter == 1)
+            wait 0.05;
+        GenerateSplit(self.splits[1], self.active_splits, self.id);
+        self.active_splits++;
+
+        while (level.teddybear_counter == 2)
+            wait 0.05;
+    }
+    else if (isDefined(level.phone_counter))
+    {
+        while (level.phone_counter == 0)
+            wait 0.05;
+        GenerateSplit(self.splits[0], self.active_splits, self.id);
+        self.active_splits++;
+
+        while (level.phone_counter == 1)
+            wait 0.05;
+        GenerateSplit(self.splits[1], self.active_splits, self.id);
+        self.active_splits++;
+
+        while (level.phone_counter == 2)
+            wait 0.05;
+    }
+    else if (isDefined(level.toilet_counter))
+    {
+        // Custom splits func for Verr and Shino
+        while (level.toilet_counter < 3)
+            wait 0.05;
+    }
+    else if (isDefined(level.egg_damage_counter))
+    {
+        while (level.egg_damage_counter == 0)
+            wait 0.05;
+        GenerateSplit(self.splits[0], self.active_splits, self.id);
+        self.active_splits++;
+
+        while (level.egg_damage_counter == 1)
+            wait 0.05;
+        GenerateSplit(self.splits[1], self.active_splits, self.id);
+        self.active_splits++;
+
+        while (level.egg_damage_counter == 2)
+            wait 0.05;
+    }
+
+    song_timestamp = GetGametime();
+    // iPrintLn("song activated!!!");
+    GenerateSong(song_timestamp, self.title, self.id);
+}
+
+MoonSongWatcher()
+{
+    id = 0;
+    if (isDefined(self.split_offset))
+        id = self.split_offset;
+
+    while (!isDefined(level.meteor_counter) || level.meteor_counter == 0)
+        wait 0.05;
+    GenerateSplit(self.splits[id], self.active_splits, self.id);
+    self.active_splits++;
+    id++;
+
+    while (level.meteor_counter == 1)
+        wait 0.05;
+    GenerateSplit(self.splits[id], self.active_splits, self.id);
+    self.active_splits++;
+
+    while (level.meteor_counter == 2)
+        wait 0.05;
+
+    song_timestamp = GetGametime();
+    GenerateSong(song_timestamp, self.title, self.id);
+}
+
+MoonSplits()
+{
+    while (!isDefined(level.left_nomans_land) || (isDefined(level.left_nomans_land) && !level.left_nomans_land))
+        wait 0.05;
+    GenerateSplit(self.splits[0], self.active_splits, self.id);
+    self.active_splits++;
+
+    if (self.split_offeset == 2) 
+    {
+        flag_wait("power_on");
+        GenerateSplit(self.splits[1], self.active_splits, self.id);
+        self.active_splits++;
+    }
+}
+
+EightBitWatcher()
+{
+	self endon("disconnect");
+	level endon("disconnect");
 
     while (true)
     {
-        if (level.zombie_vars["zombie_drop_item"])
+        level waittill("8-bit", trigger);
+        if (trigger == self.trigger)
         {
-            hud_drop_value.color = (0.4, 1, 0.7);
-            hud_drop_value setText(&"SONGS_YES");
+            song_timestamp = GetGametime();
+            GenerateSong(song_timestamp, self.title, self.id);
         }
         else
         {
-            hud_drop_value.color = (0.9, 0.5, 0);
-            hud_drop_value setText(&"SONGS_NO");
+            continue;
+        }
+    }
+}
+
+A7xHandler()
+{
+    breach_t11 = false;
+    breach_t6 = false;
+    while (!flag("both_tunnels_breached"))
+    {
+        if (flag("hangar_breached") && !breach_t11)
+        {
+            breach_t11 = true
+            GenerateSplit(self.splits[2], self.active_splits, self.id);
+            self.active_splits++;
+        }
+        if (flag("teleporter_breached") && !breach_t6)
+        {
+            breach_t6 = true
+            GenerateSplit(self.splits[3], self.active_splits, self.id);
+            self.active_splits++;
         }
 
         wait 0.05;
     }
+
+    while (!level.played_extra_song_a7x)
+        wait 0.05;
+    song_timestamp = GetGametime();
+    GenerateSong(song_timestamp, self.title, self.id);
+}
+
+NachtCounter()
+{
+    while (!flag("song_nacht"))
+        wait 0.05;
+
+    song_timestamp = GetGametime();
+    GenerateSong(song_timestamp, self.title, self.id);
+}
+
+SelectSplit()
+{
+    while (true)
+    {
+        switch (getDvar("split"))
+        {
+            case "coming home":
+            case "nightmare":
+            case "redamned":
+            case "coming home 8bit":
+            case "pareidolia 8bit":
+                return getDvar("split");
+            default:
+                wait 0.05;
+        }
+    }
+}
+
+SplitWatcherNacht()
+{
+    level waittill("door_opened", door_origin);
+    if (door_origin == (175, 587, -9946))
+        GenerateSplit(self.splits[0], self.active_splits, self.id);
+}
+
+SpawnSongs()
+{
+    all_songs = array();
+
+    if (level.script == "zombie_theater")
+    {
+        one_one_five = spawnStruct();
+        one_one_five.title = "115";
+        one_one_five.func = ::SongWatcher;
+        one_one_five.splits = array("First Meteor", "Second Meteor");
+        all_songs[all_songs.size] = one_one_five;
+    }
+
+    else if (level.script == "zombie_pentagon")
+    {
+        wont_back_down = spawnStruct();
+        wont_back_down.title = "Won't Back Down";
+        wont_back_down.func = ::SongWatcher;
+        wont_back_down.splits = array("First Phone", "Second Phone");
+        all_songs[all_songs.size] = wont_back_down;
+    }
+
+    else if (level.script == "zombie_cosmodrome")
+    {
+        abracadavre = spawnStruct();
+        abracadavre.title = "Abracadavre";
+        abracadavre.func = ::SongWatcher;
+        abracadavre.splits = array("First Teddy", "Second Teddy");
+        all_songs[all_songs.size] = abracadavre;
+    }
+
+    else if (level.script == "zombie_coast")
+    {
+        not_ready_to_die = spawnStruct();
+        not_ready_to_die.title = "Not Ready to Die";
+        not_ready_to_die.func = ::SongWatcher;
+        not_ready_to_die.splits = array("First Meteor", "Second Meteor");
+        all_songs[all_songs.size] = not_ready_to_die;
+    }
+
+    else if (level.script == "zombie_temple")
+    {
+        pareidolia = spawnStruct();
+        pareidolia.title = "Pareidolia";
+        pareidolia.func = ::SongWatcher;
+        pareidolia.splits = array("First Meteor", "Second Meteor");
+        all_songs[all_songs.size] = pareidolia;
+    }
+
+    else if (level.script == "zombie_moon")
+    {
+        coming_home = spawnStruct();
+        coming_home.title = "Coming Home";
+        coming_home.func = ::MoonSongWatcher;
+        coming_home.splitfunc = ::MoonSplits;
+        coming_home.splits = array("No Man's Land", "First Teddy", "Second Teddy");
+        coming_home.split_offset = 1;
+        all_songs[all_songs.size] = coming_home;
+
+        coming_home_8 = spawnStruct();
+        coming_home_8.title = "Coming Home 8-bit";
+        coming_home_8.func = ::EightBitWatcher;
+        coming_home_8.splitfunc = ::MoonSplits;
+        coming_home_8.splits = array("No Man's Land", "Power");
+        coming_home_8.trigger = "mus_8bit_0";
+        coming_home_8.split_offset = 2;
+        all_songs[all_songs.size] = coming_home_8;
+
+        pareidolia_8 = spawnStruct();
+        pareidolia_8.title = "Pareidolia 8-bit";
+        pareidolia_8.func = ::EightBitWatcher;
+        pareidolia_8.splitfunc = ::MoonSplits;
+        pareidolia_8.splits = array("No Man's Land", "Power");
+        pareidolia_8.trigger = "mus_8bit_1";
+        pareidolia_8.split_offset = 2;
+        all_songs[all_songs.size] = pareidolia_8;
+
+        re_damned = spawnStruct();
+        re_damned.title = "Re-Damned";
+        re_damned.func = ::EightBitWatcher;
+        re_damned.splitfunc = ::MoonSplits;
+        re_damned.splits = array("No Man's Land", "Power");
+        re_damned.trigger = "mus_8bit_2";
+        re_damned.split_offset = 2;
+        all_songs[all_songs.size] = re_damned;
+
+        nightmare = spawnStruct();
+        nightmare.title = "Nightmare";
+        nightmare.func = ::A7xHandler;
+        nightmare.splitfunc = ::MoonSplits;
+        nightmare.splits = array("No Man's Land", "Power", "Breach Tunnel 11", "Breach Tunnel 6");
+        nightmare.split_offset = 2;
+        all_songs[all_songs.size] = nightmare;
+    }
+
+    else if (level.script == "zombie_cod5_prototype")
+    {
+        undone = spawnStruct();
+        undone.title = "Undone";
+        undone.func = ::SongWatcher;
+        undone.splits = array("First Barrel", "Second Barrel");
+        all_songs[all_songs.size] = undone;
+
+        radio = spawnStruct();
+        radio.title = "Radio";
+        radio.func = ::NachtCounter;
+        radio.splitfunc = ::SplitWatcherNacht;
+        radio.splits = array("Help Doors");
+        all_songs[all_songs.size] = radio;
+    }
+
+    else if (level.script == "zombie_cod5_asylum")
+    {
+        lullaby = spawnStruct();
+        lullaby.title = "Lullaby for a Dead Man";
+        lullaby.func = ::SongWatcher;
+        // lullaby.splitfunc = ::;
+        all_songs[all_songs.size] = lullaby;
+    }
+
+    else if (level.script == "zombie_cod5_sumpf")
+    {
+        the_one = spawnStruct();
+        the_one.title = "The One";
+        the_one.func = ::SongWatcher;
+        // the_one.splitfunc = ::;
+        all_songs[all_songs.size] = the_one;
+    }
+
+    else if (level.script == "zombie_cod5_factory")
+    {
+        beauty_of_annihilation = spawnStruct();
+        beauty_of_annihilation.func = ::SongWatcher;
+        all_songs[all_songs.size] = beauty_of_annihilation;
+    }
+
+    return all_songs;
+}
+
+GetGametime()
+{
+    if (isDefined(level.start_timestamp))
+        gametime = int(getTime() - level.start_timestamp);
+    else
+        gametime = int(getTime());
+    return gametime;
+}
+
+// Songs HUD
+
+GenerateSong(song_time, song_name, song_id)
+{
+    // y_offset = level.playing_songs * (20 * (level.longest_splits + 1));
+    position = 30 + (((level.longest_splits + 1) * 20) * (song_id + 1));
+
+    // iPrintLn("playing_songs: " + level.playing_songs + " / longest_splits: " + level.longest_splits + " / song_id: " + song_id);
+    // iPrintLn("position: " + position);
+    // iPrintLn("y_offset: " + y_offset);
+
+	hud_song = NewHudElem();
+	hud_song.horzAlign = "left";
+	hud_song.vertAlign = "top";
+	hud_song.alignX = "left";
+	hud_song.alignY = "top";
+	hud_song.x = 10;
+	hud_song.y = position - 50;
+	hud_song.fontScale = 1.4;
+	hud_song.alpha = 0;
+	hud_song.hidewheninmenu = 1;
+	hud_song.foreground = 1;
+	hud_song.color = (1, 0.6, 0.8);
+    hud_song.label = song_name + ": ";
+    
+    hud_song setText(GetTimeDetailed(true, song_time));
+	hud_song.alpha = 1;
+
+    level.playing_songs++;
+
+    return;
+}
+
+GenerateSplit(split, split_numbers, song_id)
+{
+    split_time = GetGametime();
+
+    position = 35 + (((level.longest_splits + 1) * 20) * (song_id + 1));
+    y_offset = split_numbers * 15;
+
+    // iPrintLn("playing_songs: " + level.playing_songs + " / longest_splits: " + level.longest_splits + " / song_id: " + song_id + " / split_numbers: " + split_numbers);
+    // iPrintLn("position: " + position);
+    // iPrintLn("y_offset: " + y_offset);
+
+	hud_split = NewHudElem();
+	hud_split.horzAlign = "left";
+	hud_split.vertAlign = "top";
+	hud_split.alignX = "left";
+	hud_split.alignY = "top";
+	hud_split.x = 10;
+	hud_split.y = (position + y_offset) - 50;
+	hud_split.fontScale = 1.2;
+	hud_split.alpha = 0;
+	hud_split.hidewheninmenu = 1;
+	hud_split.foreground = 1;
+	hud_split.color = (0.8, 0.8, 0.8);
+    hud_split.label = "" + split + ": ";
+    
+    hud_split setText(GetTimeDetailed(true, split_time));
+	hud_split.alpha = 1;
+
+    return;
 }
