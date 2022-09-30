@@ -427,6 +427,88 @@ GspeedTracker()
     }
 }
 
+ZoneHud(print_real)
+{
+    self endon("disconnect");
+
+    PlayerThreadBlackscreenWaiter();
+
+	hud_zone = NewClientHudElem(self);
+	hud_zone.horzAlign = "left";
+	hud_zone.vertAlign = "bottom";
+	hud_zone.alignX = "left";
+	hud_zone.alignY = "bottom";
+	hud_zone.x = 7;
+	hud_zone.y = -100;
+	hud_zone.fontScale = 1;
+	hud_zone.alpha = 1;
+	hud_zone.hidewheninmenu = 1;
+	hud_zone.foreground = 1;
+
+    zone = "";
+
+    if (!isDefined(print_real))
+        print_real = false;
+
+    while (true)
+    {
+        wait 0.05;
+
+        current_zone = self get_current_zone();
+
+        if (current_zone == zone)
+            continue;
+
+        zone = current_zone;
+
+        if (print_real)
+            hud_zone setText(zone);
+        else
+            hud_zone setText(TranslateZone(zone));
+    }
+}
+
+Compass()
+{
+    // Don't activate it randomly, will string overflow within a minute
+    self endon("disconnect");
+
+    PlayerThreadBlackscreenWaiter();
+
+	comapss_hud = NewClientHudElem(self);
+	comapss_hud.horzAlign = "center";
+	comapss_hud.vertAlign = "middle";
+	comapss_hud.alignX = "center";
+	comapss_hud.alignY = "middle";
+	comapss_hud.x = 25;
+	comapss_hud.y = 25;
+	comapss_hud.fontScale = 1;
+	comapss_hud.alpha = 1;
+	comapss_hud.hidewheninmenu = 1;
+	comapss_hud.foreground = 1;
+
+    position = (0, 0, 0);
+
+    while (true)
+    {
+        wait 0.10;
+
+        current_position = self.origin;
+
+        if (current_position == position)
+            continue;
+
+        position = current_position;
+
+        comapss_hud setText(position[0] + ", " + position[1] + ", " + position[2]);
+    }
+}
+
+TranslateZone(zone)
+{
+    return zone;
+}
+
 // Songs logic
 
 SongInit()
@@ -608,6 +690,38 @@ MoonSongWatcher()
 
     song_timestamp = GetGametime();
     GenerateSong(song_timestamp, self.title, self.id);
+}
+
+DerSongWatcher()
+{
+    while (level.meteor_counter == 0)
+        wait 0.05;
+    GenerateSplit(self.splits[0], self.active_splits, self.id);
+    self.active_splits++;
+
+    while (level.meteor_counter < 3)
+        wait 0.05;
+
+    song_timestamp = GetGametime();
+    GenerateSong(song_timestamp, self.title, self.id);
+}
+
+DerZoneScanner()
+{
+    while (true)
+    {
+        players = getPlayers();
+        for (p = 0; p < players.size; p++)
+        {
+            // Y can go up to -963, but it's moved to prevent trigger going off on garage stairs
+            if ((players[p].origin[0] < 151.4) && (players[p].origin[1] < -1009) && (players[p].origin[2] > 188.5))
+                break;
+        }
+        wait 0.05;
+    }
+
+    GenerateSplit(self.splits[1], self.active_splits, self.id);
+    self.active_splits++;
 }
 
 MoonSplits()
@@ -824,6 +938,7 @@ SpawnSongs()
         lullaby.title = "Lullaby for a Dead Man";
         lullaby.func = ::SongWatcher;
         // lullaby.splitfunc = ::;
+        lullaby.splits = array();
         all_songs[all_songs.size] = lullaby;
     }
 
@@ -833,13 +948,17 @@ SpawnSongs()
         the_one.title = "The One";
         the_one.func = ::SongWatcher;
         // the_one.splitfunc = ::;
+        the_one.splits = array();
         all_songs[all_songs.size] = the_one;
     }
 
     else if (level.script == "zombie_cod5_factory")
     {
         beauty_of_annihilation = spawnStruct();
-        beauty_of_annihilation.func = ::SongWatcher;
+        beauty_of_annihilation.title = "Beauty of Annihilation";
+        beauty_of_annihilation.func = ::DerSongWatcher;
+        beauty_of_annihilation.splitfunc = ::DerZoneScanner;
+        beauty_of_annihilation.splits = array("First Tube", "Reached DT");
         all_songs[all_songs.size] = beauty_of_annihilation;
     }
 
