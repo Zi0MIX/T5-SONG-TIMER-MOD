@@ -32,15 +32,46 @@ ModSetup()
 
     setDvar("zm_song_start", 0);
 
-    if (!isDefined(getDvar("split")))
-        setDvar("split", "Select a split");
-
     level.PATCH_VERSION = 2;
     level.WAIT_FOR_8BIT = true;
     level.SONG_DEBUG = true;
 
     level.playing_songs = 0;
     level.longest_splits = 0;
+}
+
+SetDefaultSplit()
+{
+    switch (getDvar("split"))
+    {
+        case "coming home":
+        case "nightmare":
+        case "redamned":
+        case "coming home 8":
+        case "pareidolia 8":
+            AskForSplit(true);
+            return;
+        default:
+            AskForSplit(false);
+            setDvar("split", "Select a split");
+            return;
+    }
+}
+
+TranslateSongName()
+{
+    selection = getDvar("split");
+
+    if (selection == "coming home")
+        return "Coming Home";
+    else if (selection == "nightmare")
+        return "Nightmare";
+    else if (selection == "redamned")
+        return "Re-Damned";
+    else if (selection == "coming home 8")
+        return "Coming Home 8-bit";
+    else if (selection == "pareidolia 8")
+        return "Pareidolia 8-bit";
 }
 
 AwaitBlackscreen()
@@ -160,6 +191,37 @@ Welcome(override)
 
     wait 1;
     welcome_hud destroy();
+}
+
+AskForSplit(is_selected)
+{
+    if (is_selected)
+        override = "SELECTED SONG: " + TranslateSongName();
+    else
+        override = "No split selected. Select a split using '/split' command. Then 'fast_restart' the game.";
+
+	split_selection_hud = NewHudElem();
+	split_selection_hud.horzAlign = "center";
+	split_selection_hud.vertAlign = "middle";
+	split_selection_hud.alignX = "center";
+	split_selection_hud.alignY = "middle";
+	split_selection_hud.x = 0;
+	split_selection_hud.y = -40;
+	split_selection_hud.fontScale = 1.5;
+	split_selection_hud.alpha = 0;
+	split_selection_hud.hidewheninmenu = 0;
+	split_selection_hud.foreground = 1;
+	split_selection_hud.color = (1, 0.6, 0.6);
+
+    split_selection_hud setText(override);
+    split_selection_hud fadeOverTime(0.25);
+    split_selection_hud.alpha = 1;
+    wait 5;
+    split_selection_hud fadeOverTime(0.25);
+    split_selection_hud.alpha = 0;
+
+    wait 1;
+    split_selection_hud destroy();
 }
 
 TimerHud()
@@ -377,8 +439,8 @@ SongInit()
 
     if (level.script == "zombie_moon")
     {
+        SetDefaultSplit();
         split_mode = SelectSplit();
-        iPrintLn("SELECTED: " + split_mode);
 
         song = undefined;
         if (split_mode == "coming home")
