@@ -1036,7 +1036,7 @@ debris_think()
 			}
 
 			play_sound_at_pos( "purchase", self.origin );
-			level notify ("junk purchased");
+			level notify ("junk purchased", self.origin);
 
 			move_ent = undefined;
 			clip = undefined;

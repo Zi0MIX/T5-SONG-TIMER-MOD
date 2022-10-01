@@ -403,31 +403,51 @@ MoonSongWatcher()
     GenerateSong(song_timestamp, self.title, self.id);
 }
 
-DerSongWatcher()
+FirstUseSongWatcher()
 {
-    while (level.meteor_counter == 0)
-        wait 0.05;
-    GenerateSplit(self.splits[0], self.active_splits, self.id);
-    self.active_splits++;
+    if (isDefined(level.meteor_counter))
+    {
+        while (level.meteor_counter == 0)
+            wait 0.05;
+        GenerateSplit(self.splits[0], self.active_splits, self.id);
+        self.active_splits++;
 
-    while (level.meteor_counter < 3)
-        wait 0.05;
+        while (level.meteor_counter < 3)
+            wait 0.05;
+    }
 
     song_timestamp = GetGametime();
     GenerateSong(song_timestamp, self.title, self.id);
 }
 
-DerZoneScanner()
+ZoneScanner()
 {
-    while (true)
+    self thread SplitWatcherHub();
+
+    reached_zone = false;
+    while (!reached_zone)
     {
         players = getPlayers();
-        for (p = 0; p < players.size; p++)
+
+        if (level.script == "zombie_cod5_asylum")
         {
-            // Y can go up to -963, but it's moved to prevent trigger going off on garage stairs
-            if ((players[p].origin[0] < 151.4) && (players[p].origin[1] < -1009) && (players[p].origin[2] > 188.5))
-                break;
+            for (p = 0; p < players.size; p++)
+            {
+                if ((players[p].origin[0] < -127) && (players[p].origin[1] < -845))
+                    reached_zone = true;
+            }
         }
+
+        else if (level.script == "zombie_cod5_factory")
+        {
+            for (p = 0; p < players.size; p++)
+            {
+                // Y can go up to -963, but it's moved to prevent trigger going off on garage stairs
+                if ((players[p].origin[0] < 151.4) && (players[p].origin[1] < -1009) && (players[p].origin[2] > 188.5))
+                    reached_zone = true;
+            }
+        }
+
         wait 0.05;
     }
 
@@ -525,11 +545,67 @@ SelectSplit()
     }
 }
 
-SplitWatcherNacht()
+SplitWatcherHub()
 {
-    level waittill("door_opened", door_origin);
-    if (door_origin == (175, 587, -9946))
-        GenerateSplit(self.splits[0], self.active_splits, self.id);
+    self thread SplitWatcherDoors();
+    self thread SplitWatcherDebris();
+}
+
+SplitWatcherDoors()
+{
+    while (true)
+    {
+        level waittill("door_opened", door_origin);
+
+        if (isDefined(level.SONG_DEBUG) && level.SONG_DEBUG)
+            iPrintLn(door_origin);
+
+        // Nacht help door
+        if ((door_origin == (175, 587, -9946)) && (level.script == "zombie_cod5_prototype"))
+        {
+            GenerateSplit(self.splits[0], self.active_splits, self.id);
+            self.active_splits++;
+        }
+
+        // Second Verruckt doors
+        // else if ((door_origin == (144, -678, -9733)) && (level.script == "zombie_cod5_asylum"))
+        // {
+        //     GenerateSplit(self.splits[1], self.active_splits, self.id);
+        //     self.active_splits++;
+        // }
+
+        // Third Shino doors
+        else if ((door_origin == (7966, -1046, -10619)) && (level.script == "zombie_cod5_sumpf"))
+        {
+            GenerateSplit(self.splits[1], self.active_splits, self.id);
+            self.active_splits++;
+        }
+    }
+}
+
+SplitWatcherDebris()
+{
+    while (true)
+    {
+        level waittill("junk purchased", door_origin);
+
+        if (isDefined(level.SONG_DEBUG) && level.SONG_DEBUG)
+            iPrintLn(door_origin);
+
+        // First Verruckt doors
+        if ((door_origin == (1017, -678, 188)) && (level.script == "zombie_cod5_asylum"))
+        {
+            GenerateSplit(self.splits[0], self.active_splits, self.id);
+            self.active_splits++;
+        }
+
+        // First Shino doors
+        else if ((door_origin == (10124, 373, -478)) && (level.script == "zombie_cod5_sumpf"))
+        {
+            GenerateSplit(self.splits[0], self.active_splits, self.id);
+            self.active_splits++;
+        }
+    }
 }
 
 SpawnSongs()
@@ -638,7 +714,7 @@ SpawnSongs()
         radio = spawnStruct();
         radio.title = "Radio";
         radio.func = ::NachtCounter;
-        radio.splitfunc = ::SplitWatcherNacht;
+        radio.splitfunc = ::SplitWatcherHub;
         radio.splits = array("Help Doors");
         all_songs[all_songs.size] = radio;
     }
@@ -648,8 +724,8 @@ SpawnSongs()
         lullaby = spawnStruct();
         lullaby.title = "Lullaby for a Dead Man";
         lullaby.func = ::SongWatcher;
-        // lullaby.splitfunc = ::;
-        lullaby.splits = array();
+        lullaby.splitfunc = ::ZoneScanner;
+        lullaby.splits = array("First Doors", "Reached Toilet");
         all_songs[all_songs.size] = lullaby;
     }
 
@@ -658,8 +734,8 @@ SpawnSongs()
         the_one = spawnStruct();
         the_one.title = "The One";
         the_one.func = ::SongWatcher;
-        // the_one.splitfunc = ::;
-        the_one.splits = array();
+        the_one.splitfunc = ::SplitWatcherHub;
+        the_one.splits = array("Spawn Doors", "Comms Doors");
         all_songs[all_songs.size] = the_one;
     }
 
@@ -667,8 +743,8 @@ SpawnSongs()
     {
         beauty_of_annihilation = spawnStruct();
         beauty_of_annihilation.title = "Beauty of Annihilation";
-        beauty_of_annihilation.func = ::DerSongWatcher;
-        beauty_of_annihilation.splitfunc = ::DerZoneScanner;
+        beauty_of_annihilation.func = ::FirstUseSongWatcher;
+        beauty_of_annihilation.splitfunc = ::ZoneScanner;
         beauty_of_annihilation.splits = array("First Tube", "Reached DT");
         all_songs[all_songs.size] = beauty_of_annihilation;
     }
