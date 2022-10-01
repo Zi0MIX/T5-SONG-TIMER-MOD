@@ -165,7 +165,7 @@ ModSetup()
     {
         PrecacheString(&"SONGS_ZOMBIE_COD5_SUMPF_CENTER_BUILDING_UPSTAIRS");
         PrecacheString(&"SONGS_ZOMBIE_COD5_SUMPF_CENTER_BUILDING_UPSTAIRS_BUY");
-        preCacheString(&"SONGS_ZOMBIE_COD5_SUMPF_CENTER_BUILDING_COMBINED");
+        PrecacheString(&"SONGS_ZOMBIE_COD5_SUMPF_CENTER_BUILDING_COMBINED");
         PrecacheString(&"SONGS_ZOMBIE_COD5_SUMPF_NORTHWEST_OUTSIDE");
         PrecacheString(&"SONGS_ZOMBIE_COD5_SUMPF_NORTHWEST_BUILDING");
         PrecacheString(&"SONGS_ZOMBIE_COD5_SUMPF_SOUTHWEST_OUTSIDE");
@@ -264,7 +264,7 @@ SongInit()
             }
         }
 
-        else if (split_mode == "coming home 8bit")
+        else if (split_mode == "coming home 8")
         {
             for (s = 0; s < songs.size; s++)
             {
@@ -273,7 +273,7 @@ SongInit()
             }
         }
 
-        else if (split_mode == "pareidolia 8bit")
+        else if (split_mode == "pareidolia 8")
         {
             for (s = 0; s < songs.size; s++)
             {
@@ -537,8 +537,8 @@ SelectSplit()
             case "coming home":
             case "nightmare":
             case "redamned":
-            case "coming home 8bit":
-            case "pareidolia 8bit":
+            case "coming home 8":
+            case "pareidolia 8":
                 return getDvar("split");
             default:
                 wait 0.05;
