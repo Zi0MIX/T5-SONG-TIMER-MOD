@@ -344,7 +344,10 @@ Compass()
 
     while (true)
     {
-        wait 0.10;
+        wait 0.1;
+
+        if (!getDvarInt("debug_compass"))
+            continue;
 
         current_position = self.origin;
 

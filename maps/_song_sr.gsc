@@ -195,6 +195,7 @@ ModSetup()
     flag_init("game_started");
 
     setDvar("zm_song_start", 0);
+    setDvar("debug_compass", 0);
 
     level.PATCH_VERSION = 2;
     level.WAIT_FOR_8BIT = true;
