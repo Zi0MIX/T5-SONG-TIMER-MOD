@@ -284,6 +284,7 @@ ZoneHud(print_real)
 
     PlayerThreadBlackscreenWaiter();
     AwaitLander();
+    AwaitVerrucktPrints();
 
 	hud_zone = NewClientHudElem(self);
 	hud_zone.horzAlign = "left";

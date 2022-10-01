@@ -324,6 +324,13 @@ AwaitLander()
     return;
 }
 
+AwaitVerrucktPrints()
+{
+    if (level.script == "zombie_cod5_asylum")
+        wait 8;
+    return;
+}
+
 PlayerThreadBlackscreenWaiter()
 {
     while (!flag("game_started"))
