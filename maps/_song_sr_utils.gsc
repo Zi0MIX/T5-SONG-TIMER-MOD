@@ -213,10 +213,8 @@ ZoneHandler(zonestr)
 
         case "songs_zombie_cod5_asylum_west_downstairs_zone":
             return &"SONGS_ZOMBIE_COD5_ASYLUM_WEST_DOWNSTAIRS_ZONE";
-        case "songs_zombie_cod5_asylum_sounth_upstairs_zone":
-            return &"SONGS_ZOMBIE_COD5_ASYLUM_SOUNTH_UPSTAIRS_ZONE";
-        case "zombie_cod5_sumpf_center_building_combined":
-            return &"ZOMBIE_COD5_SUMPF_CENTER_BUILDING_COMBINED";
+        case "songs_zombie_cod5_asylum_south_upstairs_zone":
+            return &"SONGS_ZOMBIE_COD5_ASYLUM_SOUTH_UPSTAIRS_ZONE";
         case "songs_zombie_cod5_asylum_south2_upstairs_zone":
             return &"SONGS_ZOMBIE_COD5_ASYLUM_SOUTH2_UPSTAIRS_ZONE";
         case "songs_zombie_cod5_asylum_power_upstairs_zone":
