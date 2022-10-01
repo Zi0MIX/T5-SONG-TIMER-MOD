@@ -29,7 +29,7 @@ ModSetup()
     PrecacheString(&"SONGS_YES");
     PrecacheString(&"SONGS_NO");
 
-    if (level.script == "zombie_theater")
+    if (IsKino())
     {
         PrecacheString(&"SONGS_ZOMBIE_THEATER_FOYER_ZONE");
         PrecacheString(&"SONGS_ZOMBIE_THEATER_FOYER2_ZONE");
@@ -42,7 +42,7 @@ ModSetup()
         PrecacheString(&"SONGS_ZOMBIE_THEATER_ALLEYWAY_ZONE");
         PrecacheString(&"SONGS_ZOMBIE_THEATER_CREMATORIUM_ZONE");
     }
-    else if (level.script == "zombie_pentagon")
+    else if (IsFive())
     {
         PrecacheString(&"SONGS_ZOMBIE_PENTAGON_CONFERENCE_LEVEL1");
         PrecacheString(&"SONGS_ZOMBIE_PENTAGON_HALLWAY_LEVEL1");
@@ -59,7 +59,7 @@ ModSetup()
         PrecacheString(&"SONGS_ZOMBIE_PENTAGON_LABS_ZONE3");
         PrecacheString(&"SONGS_ZOMBIE_PENTAGON_CONFERENCE_LEVEL2");
     }
-    else if (level.script == "zombie_cosmodrome")
+    else if (IsAscension())
     {
         PrecacheString(&"SONGS_ZOMBIE_COSMODROME_CENTRIFUGE_ZONE");
         PrecacheString(&"SONGS_ZOMBIE_COSMODROME_CENTRIFUGE_ZONE2");
@@ -79,7 +79,7 @@ ModSetup()
         PrecacheString(&"SONGS_ZOMBIE_COSMODROME_ROOF_CONNECTOR_ZONE");
         PrecacheString(&"SONGS_ZOMBIE_COSMODROME_NORTH_CATWALK_ZONE3");
     }
-    else if (level.script == "zombie_coast")
+    else if (IsCotd())
     {
         PrecacheString(&"SONGS_ZOMBIE_COAST_BEACH_ZONE");
         PrecacheString(&"SONGS_ZOMBIE_COAST_SHIPBACK_NEAR_ZONE");
@@ -101,7 +101,7 @@ ModSetup()
         PrecacheString(&"SONGS_ZOMBIE_COAST_REAR_LAGOON_ZONE");
         PrecacheString(&"SONGS_ZOMBIE_COAST_START_BEACH_ZONE");
     }
-    else if (level.script == "zombie_temple")
+    else if (IsShang())
     {
         PrecacheString(&"SONGS_ZOMBIE_TEMPLE_TEMPLE_START_ZONE");
         PrecacheString(&"SONGS_ZOMBIE_TEMPLE_PRESSURE_PLATE_ZONE");
@@ -117,7 +117,7 @@ ModSetup()
         PrecacheString(&"SONGS_ZOMBIE_TEMPLE_WATERFALL_UPPER_ZONE");
         PrecacheString(&"SONGS_ZOMBIE_TEMPLE_WATERFALL_UPPER1_ZONE");
     }
-    else if (level.script == "zombie_moon")
+    else if (IsMoon())
     {
         PrecacheString(&"SONGS_ZOMBIE_MOON_AIRLOCK_BRIDGE_ZONE");
         PrecacheString(&"SONGS_ZOMBIE_MOON_WATER_ZONE");
@@ -143,13 +143,13 @@ ModSetup()
         PrecacheString(&"SONGS_ZOMBIE_MOON_AIRLOCK_BIODOME_ZONE");
         PrecacheString(&"SONGS_ZOMBIE_MOON_FOREST_ZONE");
     }
-    else if (level.script == "zombie_cod5_prototype")
+    else if (IsNacht())
     {
         PrecacheString(&"SONGS_ZOMBIE_COD5_PROTOTYPE_START_ZONE");
         PrecacheString(&"SONGS_ZOMBIE_COD5_PROTOTYPE_BOX_ZONE");
         PrecacheString(&"SONGS_ZOMBIE_COD5_PROTOTYPE_UPSTAIRS_ZONE");
     }
-    else if (level.script == "zombie_cod5_asylum")
+    else if (IsVerruckt())
     {
         PrecacheString(&"SONGS_ZOMBIE_COD5_ASYLUM_WEST_DOWNSTAIRS_ZONE");
         PrecacheString(&"SONGS_ZOMBIE_COD5_ASYLUM_SOUTH_UPSTAIRS_ZONE");
@@ -161,7 +161,7 @@ ModSetup()
         PrecacheString(&"SONGS_ZOMBIE_COD5_ASYLUM_NORTH_DOWNSTAIRS_ZONE");
         PrecacheString(&"SONGS_ZOMBIE_COD5_ASYLUM_WEST2_DOWNSTAIRS_ZONE");
     }
-    else if (level.script == "zombie_cod5_sumpf")
+    else if (IsShino())
     {
         PrecacheString(&"SONGS_ZOMBIE_COD5_SUMPF_CENTER_BUILDING_UPSTAIRS");
         PrecacheString(&"SONGS_ZOMBIE_COD5_SUMPF_CENTER_BUILDING_UPSTAIRS_BUY");
@@ -175,7 +175,7 @@ ModSetup()
         PrecacheString(&"SONGS_ZOMBIE_COD5_SUMPF_NORTHEAST_OUTSIDE");
         PrecacheString(&"SONGS_ZOMBIE_COD5_SUMPF_NORTHEAST_BUILDING");
     }
-    else if (level.script == "zombie_cod5_factory")
+    else if (IsDer())
     {
         PrecacheString(&"SONGS_ZOMBIE_COD5_FACTORY_RECEIVER_ZONE");
         PrecacheString(&"SONGS_ZOMBIE_COD5_FACTORY_OUTSIDE_WEST_ZONE");
@@ -230,7 +230,7 @@ SongInit()
 
     songs = SpawnSongs();
 
-    if (level.script == "zombie_moon")
+    if (IsMoon())
     {
         SetDefaultSplit();
         split_mode = SelectSplit();
@@ -429,7 +429,7 @@ ZoneScanner()
     {
         players = getPlayers();
 
-        if (level.script == "zombie_cod5_asylum")
+        if (IsVerruckt())
         {
             for (p = 0; p < players.size; p++)
             {
@@ -438,7 +438,7 @@ ZoneScanner()
             }
         }
 
-        else if (level.script == "zombie_cod5_factory")
+        else if (IsDer())
         {
             for (p = 0; p < players.size; p++)
             {
@@ -561,21 +561,21 @@ SplitWatcherDoors()
             iPrintLn(door_origin);
 
         // Nacht help door
-        if ((door_origin == (175, 587, -9946)) && (level.script == "zombie_cod5_prototype"))
+        if ((door_origin == (175, 587, -9946)) && IsNacht())
         {
             GenerateSplit(self.splits[0], self.active_splits, self.id);
             self.active_splits++;
         }
 
         // Second Verruckt doors
-        // else if ((door_origin == (144, -678, -9733)) && (level.script == "zombie_cod5_asylum"))
+        // else if ((door_origin == (144, -678, -9733)) && IsVerruckt())
         // {
         //     GenerateSplit(self.splits[1], self.active_splits, self.id);
         //     self.active_splits++;
         // }
 
         // Third Shino doors
-        else if ((door_origin == (7966, -1046, -10619)) && (level.script == "zombie_cod5_sumpf"))
+        else if ((door_origin == (7966, -1046, -10619)) && IsShino())
         {
             GenerateSplit(self.splits[1], self.active_splits, self.id);
             self.active_splits++;
@@ -593,14 +593,14 @@ SplitWatcherDebris()
             iPrintLn(door_origin);
 
         // First Verruckt doors
-        if ((door_origin == (1017, -678, 188)) && (level.script == "zombie_cod5_asylum"))
+        if ((door_origin == (1017, -678, 188)) && IsVerruckt())
         {
             GenerateSplit(self.splits[0], self.active_splits, self.id);
             self.active_splits++;
         }
 
         // First Shino doors
-        else if ((door_origin == (10124, 373, -478)) && (level.script == "zombie_cod5_sumpf"))
+        else if ((door_origin == (10124, 373, -478)) && IsShino())
         {
             GenerateSplit(self.splits[0], self.active_splits, self.id);
             self.active_splits++;
@@ -612,7 +612,7 @@ SpawnSongs()
 {
     all_songs = array();
 
-    if (level.script == "zombie_theater")
+    if (IsKino())
     {
         one_one_five = spawnStruct();
         one_one_five.title = "115";
@@ -621,7 +621,7 @@ SpawnSongs()
         all_songs[all_songs.size] = one_one_five;
     }
 
-    else if (level.script == "zombie_pentagon")
+    else if (IsFive())
     {
         wont_back_down = spawnStruct();
         wont_back_down.title = "Won't Back Down";
@@ -630,7 +630,7 @@ SpawnSongs()
         all_songs[all_songs.size] = wont_back_down;
     }
 
-    else if (level.script == "zombie_cosmodrome")
+    else if (IsAscension())
     {
         abracadavre = spawnStruct();
         abracadavre.title = "Abracadavre";
@@ -639,7 +639,7 @@ SpawnSongs()
         all_songs[all_songs.size] = abracadavre;
     }
 
-    else if (level.script == "zombie_coast")
+    else if (IsCotd())
     {
         not_ready_to_die = spawnStruct();
         not_ready_to_die.title = "Not Ready to Die";
@@ -648,7 +648,7 @@ SpawnSongs()
         all_songs[all_songs.size] = not_ready_to_die;
     }
 
-    else if (level.script == "zombie_temple")
+    else if (IsShang())
     {
         pareidolia = spawnStruct();
         pareidolia.title = "Pareidolia";
@@ -657,7 +657,7 @@ SpawnSongs()
         all_songs[all_songs.size] = pareidolia;
     }
 
-    else if (level.script == "zombie_moon")
+    else if (IsMoon())
     {
         coming_home = spawnStruct();
         coming_home.title = "Coming Home";
@@ -703,7 +703,7 @@ SpawnSongs()
         all_songs[all_songs.size] = nightmare;
     }
 
-    else if (level.script == "zombie_cod5_prototype")
+    else if (IsNacht())
     {
         undone = spawnStruct();
         undone.title = "Undone";
@@ -719,7 +719,7 @@ SpawnSongs()
         all_songs[all_songs.size] = radio;
     }
 
-    else if (level.script == "zombie_cod5_asylum")
+    else if (IsVerruckt())
     {
         lullaby = spawnStruct();
         lullaby.title = "Lullaby for a Dead Man";
@@ -729,7 +729,7 @@ SpawnSongs()
         all_songs[all_songs.size] = lullaby;
     }
 
-    else if (level.script == "zombie_cod5_sumpf")
+    else if (IsShino())
     {
         the_one = spawnStruct();
         the_one.title = "The One";
@@ -739,7 +739,7 @@ SpawnSongs()
         all_songs[all_songs.size] = the_one;
     }
 
-    else if (level.script == "zombie_cod5_factory")
+    else if (IsDer())
     {
         beauty_of_annihilation = spawnStruct();
         beauty_of_annihilation.title = "Beauty of Annihilation";

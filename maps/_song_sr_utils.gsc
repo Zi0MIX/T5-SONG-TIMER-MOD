@@ -414,3 +414,73 @@ GetGametime()
         gametime = int(getTime());
     return gametime;
 }
+
+IsKino()
+{
+    if (level.script == "zombie_theater")
+        return true;
+    return false;
+}
+
+IsFive()
+{
+    if (level.script == "zombie_pentagon")
+        return true;
+    return false;
+}
+
+IsAscension()
+{
+    if (level.script == "zombie_cosmodrome")
+        return true;
+    return false;
+}
+
+IsCotd()
+{
+    if (level.script == "zombie_coast")
+        return true;
+    return false;
+}
+
+IsShang()
+{
+    if (level.script == "zombie_temple")
+        return true;
+    return false;
+}
+
+IsMoon()
+{
+    if (level.script == "zombie_moon")
+        return true;
+    return false;
+}
+
+IsNacht()
+{
+    if (level.script == "zombie_cod5_prototype")
+        return true;
+    return false;
+}
+
+IsVerruckt()
+{
+    if (level.script == "zombie_cod5_asylum")
+        return true;
+    return false;
+}
+
+IsShino()
+{
+    if (level.script == "zombie_cod5_sumpf")
+        return true;
+    return false;
+}
+
+IsDer()
+{
+    if (level.script == "zombie_cod5_factory")
+        return true;
+    return false;
+}
