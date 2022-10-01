@@ -1684,8 +1684,8 @@ onPlayerSpawned()
 
 				self thread player_grenade_watcher();
 
-				self thread maps\_song_sr::SpeedTracker();
-				self thread maps\_song_sr::ZoneHud();
+				self thread maps\_song_sr_hud::SpeedTracker();
+				self thread maps\_song_sr_hud::ZoneHud();
 
 				// if (isDefined(level.SONG_DEBUG) && level.SONG_DEBUG)
 				// 	self thread maps\_song_sr::Compass();

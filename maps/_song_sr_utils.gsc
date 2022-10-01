@@ -282,3 +282,130 @@ ZoneHandler(zonestr)
             return "UNKNOWN";
     }
 }
+
+TranslateSongName()
+{
+    selection = getDvar("split");
+
+    if (selection == "coming home")
+        return "Coming Home";
+    else if (selection == "nightmare")
+        return "Nightmare";
+    else if (selection == "redamned")
+        return "Re-Damned";
+    else if (selection == "coming home 8")
+        return "Coming Home 8-bit";
+    else if (selection == "pareidolia 8")
+        return "Pareidolia 8-bit";
+}
+
+AwaitBlackscreen()
+{
+    flag_wait("all_players_spawned");
+	wait 3.15;
+    flag_set("game_started");
+    setDvar("zm_song_start", 1);
+
+    if (isDefined(level.SONG_DEBUG) && level.SONG_DEBUG)
+    {
+        players = get_players();
+        for (i = 0; i < players.size; i++)
+        {
+            players[i].score = 50005;
+        }
+    }
+}
+
+AwaitLander()
+{
+    // Is needed for .menu files hud elements
+    if (level.script == "zombie_cosmodrome")
+        wait 6.5;
+    return;
+}
+
+PlayerThreadBlackscreenWaiter()
+{
+    while (!flag("game_started"))
+        wait 0.05;
+    return;
+}
+
+GetTimeDetailed(is_detailed, override)
+{
+    current_time = int(gettime());
+
+    if (!isDefined(is_detailed))
+        is_detailed = false;
+
+    // for rounding
+    time_offset = 50;
+
+    if (is_detailed)
+        miliseconds = override;
+    else
+        miliseconds = (current_time - level.start_timestamp) + time_offset;
+    // iPrintLn(override);
+
+    minutes = 0;
+    seconds = 0;
+
+	if( miliseconds > 995 )
+	{
+		seconds = int( miliseconds / 1000 );
+
+		miliseconds = int( miliseconds * 1000 ) % ( 1000 * 1000 );
+		miliseconds = miliseconds * 0.001; 
+
+        // iPrintLn("miliseconds: " + miliseconds);
+        // iPrintLn("seconds: " + seconds);
+
+		if( seconds > 59 )
+		{
+			minutes = int( seconds / 60 );
+			seconds = int( seconds * 1000 ) % ( 60 * 1000 );
+			seconds = seconds * 0.001; 	
+
+            // iPrintLn("minutes: " + minutes);
+		}
+	}
+
+    minutes = Int(minutes);
+    if (minutes == 0)
+        minutes = "00";
+	else if(minutes < 10)
+		minutes = "0" + minutes; 
+
+	seconds = Int(seconds); 
+    if (seconds == 0)
+        seconds = "00";
+	else if(seconds < 10)
+		seconds = "0" + seconds; 
+
+	miliseconds = Int(miliseconds); 
+	if( miliseconds == 0 )
+		miliseconds = "000";
+	else if( miliseconds < 100 )
+		miliseconds = "0" + miliseconds;
+
+    miliseconds = getsubstr(miliseconds, 0, 2);
+    if (!is_detailed)
+        miliseconds = getsubstr(miliseconds, 0, 1);
+
+	return "" + minutes + ":" + seconds + "." + miliseconds; 
+}
+
+TranslateZone(zone)
+{
+    zone_str = maps\_song_sr_utils::ZoneHandler("songs_" + level.script + "_"  + zone);
+    return zone_str;
+}
+
+GetGametime()
+{
+    if (isDefined(level.start_timestamp))
+        gametime = int(getTime() - level.start_timestamp);
+    else
+        gametime = int(getTime());
+    return gametime;
+}
