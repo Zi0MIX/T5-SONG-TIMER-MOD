@@ -27,6 +27,168 @@ ModSetup()
     PrecacheString(&"SONGS_YES");
     PrecacheString(&"SONGS_NO");
 
+    if (level.script == "zombie_theater")
+    {
+        PrecacheString(&"SONGS_ZOMBIE_THEATER_FOYER_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_THEATER_FOYER2_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_THEATER_VIP_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_THEATER_DINING_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_THEATER_DRESSING_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_THEATER_STAGE_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_THEATER_THEATER_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_THEATER_WEST_BALCONY_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_THEATER_ALLEYWAY_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_THEATER_CREMATORIUM_ZONE");
+    }
+    else if (level.script == "zombie_pentagon")
+    {
+        PrecacheString(&"SONGS_ZOMBIE_PENTAGON_CONFERENCE_LEVEL1");
+        PrecacheString(&"SONGS_ZOMBIE_PENTAGON_HALLWAY_LEVEL1");
+        PrecacheString(&"SONGS_ZOMBIE_PENTAGON_WAR_ROOM_ZONE_TOP");
+        PrecacheString(&"SONGS_ZOMBIE_PENTAGON_WAR_ROOM_ZONE_NORTH");
+        PrecacheString(&"SONGS_ZOMBIE_PENTAGON_WAR_ROOM_ZONE_SOUTH");
+        PrecacheString(&"SONGS_ZOMBIE_PENTAGON_WAR_ROOM_ZONE_ELEVATOR");
+        PrecacheString(&"SONGS_ZOMBIE_PENTAGON_LABS_ZONE_ELEVATOR");
+        PrecacheString(&"SONGS_ZOMBIE_PENTAGON_LABS_ELEVATOR");
+        PrecacheString(&"SONGS_ZOMBIE_PENTAGON_LABS_HALLWAY1");
+        PrecacheString(&"SONGS_ZOMBIE_PENTAGON_LABS_HALLWAY2");
+        PrecacheString(&"SONGS_ZOMBIE_PENTAGON_LABS_ZONE1");
+        PrecacheString(&"SONGS_ZOMBIE_PENTAGON_LABS_ZONE2");
+        PrecacheString(&"SONGS_ZOMBIE_PENTAGON_LABS_ZONE3");
+        PrecacheString(&"SONGS_ZOMBIE_PENTAGON_CONFERENCE_LEVEL2");
+    }
+    else if (level.script == "zombie_cosmodrome")
+    {
+        PrecacheString(&"SONGS_ZOMBIE_COSMODROME_CENTRIFUGE_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COSMODROME_CENTRIFUGE_ZONE2");
+        PrecacheString(&"SONGS_ZOMBIE_COSMODROME_ACCESS_TUNNEL_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COSMODROME_STORAGE_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COSMODROME_STORAGE_ZONE2");
+        PrecacheString(&"SONGS_ZOMBIE_COSMODROME_STORAGE_LANDER_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COSMODROME_BASE_ENTRY_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COSMODROME_BASE_ENTRY_ZONE2");
+        PrecacheString(&"SONGS_ZOMBIE_COSMODROME_POWER_BUILDING");
+        preCacheString(&"SONGS_ZOMBIE_COSMODROME_POWER_BUILDING_ROOF");
+        PrecacheString(&"SONGS_ZOMBIE_COSMODROME_CENTRIFUGE2POWER_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COSMODROME_NORTH_PATH_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COSMODROME_UNDER_ROCKET_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COSMODROME_CONTROL_ROOM_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COSMODROME_LABS_ZONE2");
+        PrecacheString(&"SONGS_ZOMBIE_COSMODROME_ROOF_CONNECTOR_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COSMODROME_NORTH_CATWALK_ZONE3");
+    }
+    else if (level.script == "zombie_coast")
+    {
+        PrecacheString(&"SONGS_ZOMBIE_COAST_BEACH_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COAST_SHIPBACK_NEAR_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COAST_SHIPBACK_FAR_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COAST_SHIPBACK_NEAR2_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COAST_SHIPBACK_LEVEL3_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COAST_SHIPFRONT_NEAR_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COAST_SHIPFRONT_FAR_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COAST_SHIPFRONT_STORAGE_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COAST_SHIPFRONT_BOTTOM_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COAST_BEACH_ZONE2");
+        PrecacheString(&"SONGS_ZOMBIE_COAST_RESIDENCE_ROOF_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COAST_RESIDENCE1_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COAST_START_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COAST_LIGHTHOUSE1_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COAST_LIGHTHOUSE2_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COAST_CATWALK_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COAST_START_CAVE_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COAST_REAR_LAGOON_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COAST_START_BEACH_ZONE");
+    }
+    else if (level.script == "zombie_temple")
+    {
+        PrecacheString(&"SONGS_ZOMBIE_TEMPLE_TEMPLE_START_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_TEMPLE_PRESSURE_PLATE_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_TEMPLE_CAVE_TUNNEL_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_TEMPLE_CAVES1_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_TEMPLE_CAVES2_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_TEMPLE_CAVES3_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_TEMPLE_POWER_ROOM_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_TEMPLE_CAVES_WATER_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_TEMPLE_WATERFALL_LOWER_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_TEMPLE_WATERFALL_TUNNEL_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_TEMPLE_WATERFALL_TUNNEL_A_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_TEMPLE_WATERFALL_UPPER_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_TEMPLE_WATERFALL_UPPER1_ZONE");
+    }
+    else if (level.script == "zombie_moon")
+    {
+        PrecacheString(&"SONGS_ZOMBIE_MOON_AIRLOCK_BRIDGE_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_MOON_WATER_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_MOON_AIRLOCK_WEST_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_MOON_CATA_LEFT_START_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_MOON_CATA_LEFT_MIDDLE_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_MOON_AIRLOCK_WEST2_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_MOON_AIRLOCK_EAST_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_MOON_CATA_RIGHT_START_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_MOON_CATA_RIGHT_MIDDLE_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_MOON_NML_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_MOON_CATA_RIGHT_END_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_MOON_AIRLOCK_EAST2_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_MOON_GENERATOR_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_MOON_AIRLOCK_GENERATOR_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_MOON_GENERATOR_EXIT_EAST_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_MOON_ENTER_FOREST_EAST_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_MOON_AIRLOCK_LABS_2_BIODOME");
+        PrecacheString(&"SONGS_ZOMBIE_MOON_AIRLOCK_DIGSITE_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_MOON_TOWER_ZONE_EAST2");
+        PrecacheString(&"SONGS_ZOMBIE_MOON_TOWER_ZONE_EAST");
+        PrecacheString(&"SONGS_ZOMBIE_MOON_BRIDGE_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_MOON_AIRLOCK_BIODOME_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_MOON_FOREST_ZONE");
+    }
+    else if (level.script == "zombie_cod5_prototype")
+    {
+        PrecacheString(&"SONGS_ZOMBIE_COD5_PROTOTYPE_START_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COD5_PROTOTYPE_BOX_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COD5_PROTOTYPE_UPSTAIRS_ZONE");
+    }
+    else if (level.script == "zombie_cod5_asylum")
+    {
+        PrecacheString(&"SONGS_ZOMBIE_COD5_ASYLUM_WEST_DOWNSTAIRS_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COD5_ASYLUM_SOUTH_UPSTAIRS_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COD5_ASYLUM_SOUTH2_UPSTAIRS_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COD5_ASYLUM_POWER_UPSTAIRS_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COD5_ASYLUM_KITCHEN_UPSTAIRS_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COD5_ASYLUM_NORTH2_UPSTAIRS_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COD5_ASYLUM_NORTH_UPSTAIRS_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COD5_ASYLUM_NORTH_DOWNSTAIRS_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COD5_ASYLUM_WEST2_DOWNSTAIRS_ZONE");
+    }
+    else if (level.script == "zombie_cod5_sumpf")
+    {
+        PrecacheString(&"SONGS_ZOMBIE_COD5_SUMPF_CENTER_BUILDING_UPSTAIRS");
+        PrecacheString(&"SONGS_ZOMBIE_COD5_SUMPF_CENTER_BUILDING_UPSTAIRS_BUY");
+        preCacheString(&"SONGS_ZOMBIE_COD5_SUMPF_CENTER_BUILDING_COMBINED");
+        PrecacheString(&"SONGS_ZOMBIE_COD5_SUMPF_NORTHWEST_OUTSIDE");
+        PrecacheString(&"SONGS_ZOMBIE_COD5_SUMPF_NORTHWEST_BUILDING");
+        PrecacheString(&"SONGS_ZOMBIE_COD5_SUMPF_SOUTHWEST_OUTSIDE");
+        PrecacheString(&"SONGS_ZOMBIE_COD5_SUMPF_SOUTHWEST_BUILDING");
+        PrecacheString(&"SONGS_ZOMBIE_COD5_SUMPF_SOUTHEAST_OUTSIDE");
+        PrecacheString(&"SONGS_ZOMBIE_COD5_SUMPF_SOUTHEAST_BUILDING");
+        PrecacheString(&"SONGS_ZOMBIE_COD5_SUMPF_NORTHEAST_OUTSIDE");
+        PrecacheString(&"SONGS_ZOMBIE_COD5_SUMPF_NORTHEAST_BUILDING");
+    }
+    else if (level.script == "zombie_cod5_factory")
+    {
+        PrecacheString(&"SONGS_ZOMBIE_COD5_FACTORY_RECEIVER_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COD5_FACTORY_OUTSIDE_WEST_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COD5_FACTORY_WAREHOUSE_BOTTOM_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COD5_FACTORY_BRIDGE_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COD5_FACTORY_WAREHOUSE_TOP_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COD5_FACTORY_TP_WEST_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COD5_FACTORY_OUTSIDE_EAST_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COD5_FACTORY_WNUEN_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COD5_FACTORY_TP_EAST_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COD5_FACTORY_WNUEN_BRIDGE_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COD5_FACTORY_OUTSIDE_SOUTH_ZONE");
+        PrecacheString(&"SONGS_ZOMBIE_COD5_FACTORY_TP_SOUTH_ZONE");
+    }
+
     flag_init("song_nacht");
     flag_init("game_started");
 
@@ -89,6 +251,14 @@ AwaitBlackscreen()
             players[i].score = 50005;
         }
     }
+}
+
+AwaitLander()
+{
+    // Is needed for .menu files hud elements
+    if (level.script == "zombie_cosmodrome")
+        wait 6.5;
+    return;
 }
 
 PlayerThreadBlackscreenWaiter()
@@ -244,6 +414,11 @@ TimerHud()
 
 AttemptsMain()
 {
+    self endon("disconnect");
+    level endon("end_game");
+
+    AwaitLander();
+
 	attempt_hud = NewHudElem();
 	attempt_hud.horzAlign = "right";
 	attempt_hud.vertAlign = "top";
@@ -271,6 +446,8 @@ PointDropTracker()
 {
     self endon("disconnect");
     level endon("end_game");
+
+    AwaitLander();
 
 	hud_drop_value = NewHudElem();
 	hud_drop_value.horzAlign = "right";
@@ -307,6 +484,8 @@ DisplayBlocker()
     self endon("disconnect");
     level endon("end_game");
 
+    AwaitLander();
+
 	hud_blocker = NewHudElem();
 	hud_blocker.horzAlign = "right";
 	hud_blocker.vertAlign = "top";
@@ -334,6 +513,7 @@ SpeedTracker()
     level endon("end_game");
 
     PlayerThreadBlackscreenWaiter();
+    AwaitLander();
 
 	hud_velocity_value = NewClientHudElem(self);
 	hud_velocity_value.horzAlign = "right";
@@ -404,6 +584,8 @@ GspeedTracker()
     self endon("disconnect");
     level endon("end_game");
 
+    AwaitLander();
+
 	hud_gspeed_value = NewHudElem();
 	hud_gspeed_value.horzAlign = "right";
 	hud_gspeed_value.vertAlign = "top";
@@ -432,13 +614,14 @@ ZoneHud(print_real)
     self endon("disconnect");
 
     PlayerThreadBlackscreenWaiter();
+    AwaitLander();
 
 	hud_zone = NewClientHudElem(self);
 	hud_zone.horzAlign = "left";
 	hud_zone.vertAlign = "bottom";
 	hud_zone.alignX = "left";
 	hud_zone.alignY = "bottom";
-	hud_zone.x = 7;
+	hud_zone.x = 1;
 	hud_zone.y = -100;
 	hud_zone.fontScale = 1;
 	hud_zone.alpha = 1;
@@ -506,7 +689,8 @@ Compass()
 
 TranslateZone(zone)
 {
-    return zone;
+    zone_str = maps\_song_sr_utils::ZoneHandler("songs_" + level.script + "_"  + zone);
+    return zone_str;
 }
 
 // Songs logic
