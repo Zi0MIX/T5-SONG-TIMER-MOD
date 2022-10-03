@@ -279,6 +279,46 @@ GspeedTracker()
     }
 }
 
+GSpeedController()
+{
+    self endon("disconnect");
+    level endon("end_game");
+
+    AwaitLander();
+
+    while (getDvarInt("g_speed") == 190)
+        wait 0.05;
+
+    gspeed_val = getDvar("g_speed");
+
+	hud_gspeed_mark = NewHudElem();
+	hud_gspeed_mark.horzAlign = "center";
+	hud_gspeed_mark.vertAlign = "top";
+	hud_gspeed_mark.alignX = "center";
+	hud_gspeed_mark.alignY = "top";
+	hud_gspeed_mark.x = 0;
+	hud_gspeed_mark.y = 150;
+	hud_gspeed_mark.fontScale = 1.3;
+	hud_gspeed_mark.alpha = 0.66;
+	hud_gspeed_mark.hidewheninmenu = 1;
+	hud_gspeed_mark.foreground = 1;
+	hud_gspeed_mark.color = (0.8, 0, 0);
+
+    hud_gspeed_mark setText ("GSPEED CHANGED (" + getDvar("g_speed") + ")");
+
+    while (true)
+    {
+        wait 0.1;
+
+        if (getDvar("g_speed") == gspeed_val)
+            continue;
+
+        hud_gspeed_mark setText ("GSPEED CHANGED (" + getDvar("g_speed") + ")");
+        gspeed_val = getDvar("g_speed");
+    }
+
+}
+
 ZoneHud(print_real)
 {
     self endon("disconnect");

@@ -58,19 +58,19 @@
             decoration
         }
 
-        itemDef
-        {
-            name                "gspeed_label"
-            type				ITEM_TYPE_TEXT
-            rect 				-48 (150 + OFFSET) 0 0
-            forecolor			LABEL_COLOR
-            textscale			TEXTSIZE_DEFAULT
-            textstyle			ITEM_TEXTSTYLE_SHADOWED
-            textfont			UI_FONT_NORMAL
-            textalign			ITEM_ALIGN_RIGHT
-            exp text			(locString("SONGS_GSPEED_LABEL"))
-            visible				1
-            decoration
-        }
+        // itemDef
+        // {
+        //     name                "gspeed_label"
+        //     type				ITEM_TYPE_TEXT
+        //     rect 				-48 (150 + OFFSET) 0 0
+        //     forecolor			LABEL_COLOR
+        //     textscale			TEXTSIZE_DEFAULT
+        //     textstyle			ITEM_TEXTSTYLE_SHADOWED
+        //     textfont			UI_FONT_NORMAL
+        //     textalign			ITEM_ALIGN_RIGHT
+        //     exp text			(locString("SONGS_GSPEED_LABEL"))
+        //     visible				1
+        //     decoration
+        // }
     }
 }

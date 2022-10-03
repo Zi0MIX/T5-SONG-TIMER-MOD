@@ -1687,8 +1687,8 @@ onPlayerSpawned()
 				self thread maps\_song_sr_hud::SpeedTracker();
 				self thread maps\_song_sr_hud::ZoneHud();
 
-				// if (isDefined(level.SONG_DEBUG) && level.SONG_DEBUG)
-				// 	self thread maps\_song_sr_hud::Compass();
+				if (isDefined(level.SONG_DEBUG) && level.SONG_DEBUG)
+					self thread maps\_song_sr_hud::Compass();
 				
 			}
 		}
