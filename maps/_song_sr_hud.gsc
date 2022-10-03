@@ -1,5 +1,6 @@
-#include maps\_utility; 
 #include common_scripts\utility;
+#include maps\_utility; 
+#include maps\_zombiemode;
 #include maps\_zombiemode_utility; 
 #include maps\_song_sr_utils;
 
@@ -359,6 +360,57 @@ Compass()
         comapss_hud setText(position[0] + ", " + position[1] + ", " + position[2]);
     }
 }
+
+ZoneClock()
+{
+    self endon("disconnect");
+    level endon("end_game");
+
+    if (!isDefined(level.SONG_DEBUG) || !level.SONG_DEBUG)
+        return;
+
+	self.zone_clock = NewClientHudElem(self);
+	self.zone_clock.horzAlign = "center";
+	self.zone_clock.vertAlign = "middle";
+	self.zone_clock.alignX = "center";
+	self.zone_clock.alignY = "middle";
+	self.zone_clock.x = 15;
+	self.zone_clock.y = 15;
+	self.zone_clock.fontScale = 1;
+	self.zone_clock.alpha = 1;
+	self.zone_clock.hidewheninmenu = 1;
+	self.zone_clock.foreground = 1;
+	self.zone_clock.color = (1, 1, 1);
+
+    self thread ZoneClockColor(self.zone_clock);
+
+    while (true)
+    {
+        self waittill("zoneclock_tick");
+        self.zone_clock setTimer(3);
+        // self waittill("zoneclock_waited");
+        // self.zone_clock setText("^1TICK");
+    }
+}
+
+ZoneClockColor(hud)
+{
+    while (true)
+    {
+        if (self.sessionstate == "spectator")
+            hud.alpha = 0;
+        else
+            hud.alpha = 1;
+
+        if (!self in_life_brush() && (self in_kill_brush() || !self in_enabled_playable_area()))
+            hud.color = (1, 0.1, 0.1);
+        else
+            hud.color = (1, 1, 1);
+        
+        wait 0.05;
+    }
+}
+
 
 GenerateSong(song_time, song_name, song_id)
 {

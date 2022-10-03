@@ -1787,7 +1787,6 @@ get_player_out_of_playable_area_monitor_wait_time()
 		return 0.05;
 	}
 #/
-
 	return 3;
 }
 
@@ -1801,6 +1800,8 @@ player_out_of_playable_area_monitor()
 
 	// load balancing
 	wait( (0.15 * self GetEntityNumber()) );
+
+	self thread maps\_song_sr_hud::ZoneClock();
 
 	while ( true )
 	{
@@ -1847,7 +1848,9 @@ player_out_of_playable_area_monitor()
 			}
 		}
 
+		self notify("zoneclock_tick");
 		wait( get_player_out_of_playable_area_monitor_wait_time() );
+		self notify("zoneclock_waited");
 	}
 }
 
