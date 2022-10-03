@@ -1039,13 +1039,13 @@ spawn_point_override()
 	north_structs = getstructarray("north_spawn","script_noteworthy");
 	south_structs = getstructarray("south_spawn","script_noteworthy");
 
-	side1 = north_structs;
-	side2 = south_structs;
-	if(randomint(100)>50)
-	{
-		side1 = south_structs;
-		side2 = north_structs;
-	}
+	side1 = south_structs;
+	side2 = north_structs;
+	// if(randomint(100)>50)
+	// {
+	// 	side1 = north_structs;
+	// 	side2 = south_structs;
+	// }
 		
 	//spawn players on a specific side, but randomize it up a bit
 	for( i = 0; i < players.size; i++ )
