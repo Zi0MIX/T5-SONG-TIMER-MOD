@@ -186,13 +186,13 @@ SpeedTracker()
     AwaitLander();
 
 	hud_velocity_value = NewClientHudElem(self);
-	hud_velocity_value.horzAlign = "right";
-	hud_velocity_value.vertAlign = "top";
-	hud_velocity_value.alignX = "right";
-	hud_velocity_value.alignY = "top";
-	hud_velocity_value.x = -25;
-	hud_velocity_value.y = 130;
-	hud_velocity_value.fontScale = 1.4;
+	hud_velocity_value.horzAlign = "center";
+	hud_velocity_value.vertAlign = "middle";
+	hud_velocity_value.alignX = "center";
+	hud_velocity_value.alignY = "middle";
+	hud_velocity_value.x = 0;
+	hud_velocity_value.y = 155;
+	hud_velocity_value.fontScale = 1.7;
 	hud_velocity_value.alpha = 1;
 	hud_velocity_value.hidewheninmenu = 1;
 	hud_velocity_value.foreground = 1;
