@@ -200,7 +200,7 @@ ModSetup()
 
     SetDefaultSplit();
 
-    level.PATCH_VERSION = 2;
+    level.PATCH_VERSION = 2.1;
     level.WAIT_FOR_8BIT = true;
     level.SONG_DEBUG = false;
 
