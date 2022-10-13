@@ -198,6 +198,8 @@ ModSetup()
     setDvar("zm_song_start", 0);
     setDvar("debug_compass", 0);
 
+    SetDefaultSplit();
+
     level.PATCH_VERSION = 2;
     level.WAIT_FOR_8BIT = true;
     level.SONG_DEBUG = false;
@@ -215,10 +217,12 @@ SetDefaultSplit()
         case "redamned":
         case "coming home 8":
         case "pareidolia 8":
-            AskForSplit(true);
+            if (IsMoon())
+                self thread AskForSplit(true);
             return;
         default:
-            AskForSplit(false);
+            if (IsMoon())
+                self thread AskForSplit(false);
             setDvar("split", "Select a split");
             return;
     }
@@ -234,7 +238,6 @@ SongInit()
 
     if (IsMoon())
     {
-        SetDefaultSplit();
         split_mode = SelectSplit();
 
         song = undefined;
