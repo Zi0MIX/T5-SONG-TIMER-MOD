@@ -514,12 +514,8 @@ GetNetworkFrame()
 
 IsPlutonium()
 {
-    // A level variable defined in zm_spawn_fix.gsc provided by Plutonium Team
-    if (isDefined(level.oldSpawnClient))
-        return true;
-
-    // DVAR exclusive for pluto
-    if (getDvarInt("scr_disableHotJoinFixes"))
+    // Pluto exclusive dvars
+    if (getDvarFloat("safearea_adjusted_horizontal") || getDvarFloat("safearea_adjusted_vertical") || getDvarFloat("safearea_horizontal") || getDvarFloat("safearea_vertical"))
         return true;
 
     return false;
