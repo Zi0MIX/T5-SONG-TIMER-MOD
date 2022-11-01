@@ -1,6 +1,5 @@
 
-song_sr.files
-console.log
-bo1_songsr_patch.files
+*.log
+*.files
+*.ff
 missingasset.csv
-mod.ff
