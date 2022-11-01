@@ -13,6 +13,7 @@ SongSrInit()
     level.start_timestamp = getTime();
 
     level thread Welcome();
+    level thread NetworkFramePrint();
     level thread SongInit();
     level thread TimerHud();
     level thread AttemptsMain();
@@ -203,6 +204,7 @@ ModSetup()
     level.PATCH_VERSION = 2.1;
     level.WAIT_FOR_8BIT = true;
     level.SONG_DEBUG = false;
+    level.VALIDATE_NETWORK_FRAME = true;
 
     level.playing_songs = 0;
     level.longest_splits = 0;

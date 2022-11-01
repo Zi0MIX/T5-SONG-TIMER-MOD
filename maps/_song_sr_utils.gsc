@@ -486,3 +486,23 @@ IsDer()
         return true;
     return false;
 }
+
+GetNetworkFrame()
+{
+    initial_network_frame = int(getTime());
+    wait_network_frame();
+    next_network_frame = int(getTime());
+
+    between_network_frames = (next_network_frame - initial_network_frame) / 1000;
+
+    players = get_players();
+    if (isDefined(level.VALIDATE_NETWORK_FRAME) && level.VALIDATE_NETWORK_FRAME)
+    {
+        if ((players.size == 1 && between_network_frames == 0.1) || (players.size > 1 && between_network_frames == 0.05))
+            between_network_frames = "^2" + string(between_network_frames);
+        else
+            between_network_frames = "^1" + string(between_network_frames);
+    }
+
+    return string(between_network_frames);
+}

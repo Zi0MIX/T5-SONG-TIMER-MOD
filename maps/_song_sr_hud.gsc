@@ -22,7 +22,7 @@ Welcome(override)
 	welcome_hud.foreground = 1;
 	welcome_hud.color = (1, 1, 0.75);
 
-    welcome_hud setText("SongSR Timing" + override);
+    welcome_hud setText("SONGS AUTO-TIMER" + override);
     welcome_hud fadeOverTime(0.25);
     welcome_hud.alpha = 1;
     wait 4;
@@ -31,6 +31,34 @@ Welcome(override)
 
     wait 1;
     welcome_hud destroy();
+}
+
+NetworkFramePrint()
+{
+    network_frame = GetNetworkFrame();
+
+	network_hud = NewHudElem();
+	network_hud.horzAlign = "center";
+	network_hud.vertAlign = "middle";
+	network_hud.alignX = "center";
+	network_hud.alignY = "middle";
+	network_hud.x = 0;
+	network_hud.y = -100;
+	network_hud.fontScale = 1.6;
+	network_hud.alpha = 0;
+	network_hud.hidewheninmenu = 0;
+	network_hud.foreground = 1;
+	network_hud.color = (1, 1, 0.75);
+
+    network_hud setText("NETWORK FRAME: " + network_frame);
+    network_hud fadeOverTime(0.25);
+    network_hud.alpha = 1;
+    wait 4;
+    network_hud fadeOverTime(0.25);
+    network_hud.alpha = 0;
+
+    wait 1;
+    network_hud destroy();
 }
 
 AskForSplit(is_selected)
