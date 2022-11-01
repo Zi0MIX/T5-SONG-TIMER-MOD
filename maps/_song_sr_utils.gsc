@@ -324,10 +324,15 @@ AwaitLander()
     return;
 }
 
-AwaitVerrucktPrints()
+AwaitHudOnMap()
 {
-    if (level.script == "zombie_cod5_asylum")
-        wait 8;
+    switch (level.script)
+    {
+        case "zombie_cod5_asylum":
+        case "zombie_cod5_factory":
+            wait 8;
+    }
+
     return;
 }
 
