@@ -13,7 +13,6 @@ SongSrInit()
     level.start_timestamp = getTime();
 
     level thread Welcome();
-    level thread NetworkFramePrint();
     level thread SongInit();
     level thread TimerHud();
     level thread AttemptsMain();

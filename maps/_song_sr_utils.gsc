@@ -506,3 +506,23 @@ GetNetworkFrame()
 
     return string(between_network_frames);
 }
+
+IsPlutonium()
+{
+    // A level variable defined in zm_spawn_fix.gsc provided by Plutonium Team
+    if (isDefined(level.oldSpawnClient))
+        return true;
+
+    // DVAR exclusive for pluto
+    if (getDvarInt("scr_disableHotJoinFixes"))
+        return true;
+
+    return false;
+}
+
+IsPlutoniumStr()
+{
+    if (IsPlutonium())
+        return "^3PLUTONIUM";
+    return "^5STEAM";
+}

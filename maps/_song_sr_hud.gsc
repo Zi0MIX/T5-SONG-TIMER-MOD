@@ -4,61 +4,72 @@
 #include maps\_zombiemode_utility; 
 #include maps\_song_sr_utils;
 
-Welcome(override)
+Welcome()
 {
-    if (!isDefined(override))
-        override = " V" + string(level.PATCH_VERSION);
-
-	welcome_hud = NewHudElem();
-	welcome_hud.horzAlign = "center";
-	welcome_hud.vertAlign = "middle";
-	welcome_hud.alignX = "center";
-	welcome_hud.alignY = "middle";
-	welcome_hud.x = 0;
-	welcome_hud.y = -120;
-	welcome_hud.fontScale = 1.6;
-	welcome_hud.alpha = 0;
-	welcome_hud.hidewheninmenu = 0;
-	welcome_hud.foreground = 1;
-	welcome_hud.color = (1, 1, 0.75);
-
-    welcome_hud setText("SONGS AUTO-TIMER" + override);
-    welcome_hud fadeOverTime(0.25);
-    welcome_hud.alpha = 1;
-    wait 4;
-    welcome_hud fadeOverTime(0.25);
-    welcome_hud.alpha = 0;
-
-    wait 1;
-    welcome_hud destroy();
-}
-
-NetworkFramePrint()
-{
-    network_frame = GetNetworkFrame();
-
+	introduction_hud = NewHudElem();
 	network_hud = NewHudElem();
+    launcher_hud = NewHudElem();
+
+	introduction_hud.horzAlign = "center";
+	introduction_hud.vertAlign = "middle";
+	introduction_hud.alignX = "center";
+	introduction_hud.alignY = "middle";
 	network_hud.horzAlign = "center";
 	network_hud.vertAlign = "middle";
 	network_hud.alignX = "center";
 	network_hud.alignY = "middle";
-	network_hud.x = 0;
+	launcher_hud.horzAlign = "center";
+	launcher_hud.vertAlign = "middle";
+	launcher_hud.alignX = "center";
+	launcher_hud.alignY = "middle";
+
+	introduction_hud.y = -120;
 	network_hud.y = -100;
+	launcher_hud.y = -80;
+
+	introduction_hud.fontScale = 1.6;
+	introduction_hud.color = (1, 1, 0.6);
 	network_hud.fontScale = 1.6;
+	network_hud.color = (1, 1, 0.8);
+	launcher_hud.fontScale = 1.6;
+	launcher_hud.color = (1, 1, 0.8);
+
+	introduction_hud.alpha = 0;
+	introduction_hud.hidewheninmenu = 0;
+	// introduction_hud.foreground = 1;
 	network_hud.alpha = 0;
 	network_hud.hidewheninmenu = 0;
-	network_hud.foreground = 1;
-	network_hud.color = (1, 1, 0.75);
+	// network_hud.foreground = 1;
+	launcher_hud.alpha = 0;
+	launcher_hud.hidewheninmenu = 0;
+	// launcher_hud.foreground = 1;
 
+    network_frame = GetNetworkFrame();
+
+    introduction_hud setText("SONGS AUTO-TIMER V" + string(level.PATCH_VERSION));
+    introduction_hud fadeOverTime(0.25);
+    introduction_hud.alpha = 1;
     network_hud setText("NETWORK FRAME: " + network_frame);
     network_hud fadeOverTime(0.25);
     network_hud.alpha = 1;
-    wait 4;
+    launcher_hud setText("LAUNCHER MODE: " + IsPlutoniumStr());
+    launcher_hud fadeOverTime(0.25);
+    launcher_hud.alpha = 1;
+
+    wait 5.75;
+
+    introduction_hud fadeOverTime(0.25);
+    introduction_hud.alpha = 0;
     network_hud fadeOverTime(0.25);
     network_hud.alpha = 0;
+    launcher_hud fadeOverTime(0.25);
+    launcher_hud.alpha = 0;
 
     wait 1;
+
+    introduction_hud destroy();
     network_hud destroy();
+    launcher_hud destroy();
 }
 
 AskForSplit(is_selected)
