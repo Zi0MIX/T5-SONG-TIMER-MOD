@@ -364,7 +364,7 @@ ZoneHud(print_real)
 
     PlayerThreadBlackscreenWaiter();
     AwaitLander();
-    AwaitZoneHud();
+    AwaitHudOnMap();
 
 	hud_zone = NewClientHudElem(self);
 	hud_zone.horzAlign = "left";
