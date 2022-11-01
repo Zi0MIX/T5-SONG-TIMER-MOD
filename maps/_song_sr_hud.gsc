@@ -7,7 +7,7 @@
 Welcome(override)
 {
     if (!isDefined(override))
-        override = " V" + level.PATCH_VERSION;
+        override = " V" + string(level.PATCH_VERSION);
 
 	welcome_hud = NewHudElem();
 	welcome_hud.horzAlign = "center";
