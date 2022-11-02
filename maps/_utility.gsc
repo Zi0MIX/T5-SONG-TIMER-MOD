@@ -10426,24 +10426,33 @@ setClientSysState(sSysName, sSysState, player)
 */ 
 wait_network_frame()
 {
-	//    snapshot_ids = getsnapshotindexarray();
-	/#
-	debug_replay("wait_network_frame()");
-	#/
-	if(NumRemoteClients())
+	// We override the function for Pluto in case devs decide to fuck with tickrate again
+	if (maps\_song_sr_utils::IsPlutonium())
 	{
-    snapshot_ids = getsnapshotindexarray();
+		players = get_players();
 
-    acked = undefined;
-    while (!IsDefined(acked))
-    {
-        level waittill("snapacknowledged");
-        acked = snapshotacknowledged(snapshot_ids);
-    } 
+		if (players.size == 1)
+			wait 0.1;
+		else
+			wait 0.05;
 	}
 	else
 	{
-		wait(0.1);
+		if(NumRemoteClients())
+		{
+			snapshot_ids = getsnapshotindexarray();
+
+			acked = undefined;
+			while (!IsDefined(acked))
+			{
+				level waittill("snapacknowledged");
+				acked = snapshotacknowledged(snapshot_ids);
+			} 
+		}
+		else
+		{
+			wait(0.1);
+		}
 	}
 }
 
