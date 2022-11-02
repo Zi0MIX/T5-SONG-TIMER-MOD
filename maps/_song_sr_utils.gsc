@@ -520,15 +520,6 @@ IsInDebugMode()
     return false;
 }
 
-IsPlutonium()
-{
-    // Pluto exclusive dvars
-    if (getDvarFloat("safearea_adjusted_horizontal") || getDvarFloat("safearea_adjusted_vertical") || getDvarFloat("safearea_horizontal") || getDvarFloat("safearea_vertical"))
-        return true;
-
-    return false;
-}
-
 IsPlutoniumStr()
 {
     if (IsPlutonium())

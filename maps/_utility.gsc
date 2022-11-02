@@ -10427,7 +10427,7 @@ setClientSysState(sSysName, sSysState, player)
 wait_network_frame()
 {
 	// We override the function for Pluto in case devs decide to fuck with tickrate again
-	if (maps\_song_sr_utils::IsPlutonium())
+	if (IsPlutonium())
 	{
 		players = get_players();
 
@@ -15198,4 +15198,13 @@ waittill_player_shoots(weapon_type, ender)
 		continue;//weapon fired is not the kind we want to detect, keep waiting
 	}		
 	
+}
+
+IsPlutonium()
+{
+    // Pluto exclusive dvars
+    if (getDvarFloat("safearea_adjusted_horizontal") || getDvarFloat("safearea_adjusted_vertical") || getDvarFloat("safearea_horizontal") || getDvarFloat("safearea_vertical"))
+        return true;
+
+    return false;
 }
