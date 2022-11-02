@@ -613,3 +613,38 @@ SetDefaultSplit()
             return;
     }
 }
+
+HotJoinMonitor()
+{
+    if (!IsPlutonium())
+        return;
+
+    flag_wait("all_players_connected");
+    initial_players = get_players();
+
+    while (true)
+    {
+        current_players = get_players();
+        if (current_players.size != initial_players.size)
+        {
+            hud_hotjoin_mark = NewHudElem();
+            hud_hotjoin_mark.horzAlign = "center";
+            hud_hotjoin_mark.vertAlign = "top";
+            hud_hotjoin_mark.alignX = "center";
+            hud_hotjoin_mark.alignY = "top";
+            hud_hotjoin_mark.x = 0;
+            hud_hotjoin_mark.y = 175;
+            hud_hotjoin_mark.fontScale = 1.3;
+            hud_hotjoin_mark.alpha = 0.66;
+            hud_hotjoin_mark.hidewheninmenu = 1;
+            hud_hotjoin_mark.foreground = 1;
+            hud_hotjoin_mark.color = (0.8, 0, 0);
+
+            hud_gspeed_mark setText("HOTJOIN DETECTED");
+
+            break;
+        }
+
+        wait 1;
+    }
+}

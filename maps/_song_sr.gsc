@@ -211,6 +211,8 @@ ModSetup()
 
     level.playing_songs = 0;
     level.longest_splits = 0;
+
+    self thread HotJoinMonitor();
 }
 
 SongInit()
