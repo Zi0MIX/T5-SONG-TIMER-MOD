@@ -127,8 +127,6 @@ AttemptsMain()
     self endon("disconnect");
     level endon("end_game");
 
-    AwaitLander();
-
 	attempt_hud = NewHudElem();
 	attempt_hud.horzAlign = "right";
 	attempt_hud.vertAlign = "top";
@@ -137,10 +135,16 @@ AttemptsMain()
 	attempt_hud.x = -25;
 	attempt_hud.y = 80;
 	attempt_hud.fontScale = 1.4;
-	attempt_hud.alpha = 1;
+	attempt_hud.alpha = 0;
 	attempt_hud.hidewheninmenu = 1;
 	attempt_hud.foreground = 1;
 	attempt_hud.color = (1, 0.8, 1);
+
+    self thread ColorChangeWatcher(attempt_hud);
+
+    AwaitLander();
+
+	attempt_hud.alpha = 1;
 
     if (level.script != getDvar("song_attempt_map"))
     {
@@ -151,7 +155,6 @@ AttemptsMain()
     attempt_hud setValue(getDvarInt("song_attempts"));
     setDvar("song_attempts", getDvarInt("song_attempts") + 1);
 
-    self thread ColorChangeWatcher(attempt_hud);
 }
 
 PointDropTracker()
@@ -365,10 +368,6 @@ ZoneHud(print_real)
 {
     self endon("disconnect");
 
-    PlayerThreadBlackscreenWaiter();
-    AwaitLander();
-    AwaitHudOnMap();
-
 	hud_zone = NewClientHudElem(self);
 	hud_zone.horzAlign = "left";
 	hud_zone.vertAlign = "bottom";
@@ -377,16 +376,22 @@ ZoneHud(print_real)
 	hud_zone.x = 1;
 	hud_zone.y = -100;
 	hud_zone.fontScale = 1;
-	hud_zone.alpha = 1;
+	hud_zone.alpha = 0;
 	hud_zone.hidewheninmenu = 1;
 	hud_zone.foreground = 1;
+
+    self thread ColorChangeWatcher(hud_zone);
+
+    PlayerThreadBlackscreenWaiter();
+    AwaitLander();
+    AwaitHudOnMap();
+
+	hud_zone.alpha = 1;
 
     zone = "";
 
     if (!isDefined(print_real))
         print_real = false;
-
-    self thread ColorChangeWatcher(hud_zone);
 
     while (true)
     {
