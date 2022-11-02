@@ -11,6 +11,7 @@ rawfile,maps/zombie_moon.gsc
 rawfile,maps/zombie_moon_amb.gsc
 
 localize,songs
+localize,zones
 
 menufile,ui/hud_songs.menu
 menufile,ui/hud_zombie.txt
