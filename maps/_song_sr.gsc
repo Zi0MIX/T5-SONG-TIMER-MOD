@@ -14,6 +14,7 @@ SongSrInit()
 
     level thread Welcome();
     level thread SongInit();
+    level thread TimerColorController();
     level thread TimerHud();
     level thread AttemptsMain();
     // level thread DisplayBlocker();
@@ -197,6 +198,7 @@ ModSetup()
 
     setDvar("zm_song_start", 0);
     setDvar("debug_compass", 0);
+    setDvar("hud_color", "default");
 
     SetDefaultSplit();
 

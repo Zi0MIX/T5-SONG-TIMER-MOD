@@ -512,6 +512,14 @@ GetNetworkFrame()
     return string(between_network_frames);
 }
 
+IsInDebugMode()
+{
+    if (isDefined(level.SONG_DEBUG) && level.SONG_DEBUG)
+        return true;
+
+    return false;
+}
+
 IsPlutonium()
 {
     // Pluto exclusive dvars
@@ -526,4 +534,39 @@ IsPlutoniumStr()
     if (IsPlutonium())
         return "^3PLUTONIUM";
     return "^5STEAM";
+}
+
+GetRgbFromString(str)
+{
+    switch (str)
+    {
+        case "red":
+            return (1, 0, 0);
+        case "green":
+            return (0, 1, 0);
+        case "blue":
+            return (0, 0, 1);
+        case "orange":
+            return (1, 0.5, 0);
+        case "yellow":
+            return (1, 1, 0);
+        case "light green":
+            return (0.5, 1, 0);
+        case "mint":
+            return (0, 1, 0.5);
+        case "cyan":
+            return (0, 1, 1);
+        case "light blue":
+            return (0, 0.5, 1);
+        case "purple":
+            return (0.5, 0, 1);
+        case "light pink":
+            return (1, 0, 1);
+        case "pink":
+            return (1, 0, 0.5);
+        case "white":
+            return (1, 1, 1);
+        default:
+            return (1, 0.8, 1);
+    }
 }

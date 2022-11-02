@@ -119,6 +119,7 @@ TimerHud()
 	hud_timer.color = (1, 0.8, 1);
 
 	hud_timer SetTimerUp(0);
+    self thread ColorChangeWatcher(hud_timer);
 }
 
 AttemptsMain()
@@ -149,6 +150,8 @@ AttemptsMain()
 
     attempt_hud setValue(getDvarInt("song_attempts"));
     setDvar("song_attempts", getDvarInt("song_attempts") + 1);
+
+    self thread ColorChangeWatcher(attempt_hud);
 }
 
 PointDropTracker()
@@ -383,6 +386,8 @@ ZoneHud(print_real)
     if (!isDefined(print_real))
         print_real = false;
 
+    self thread ColorChangeWatcher(hud_zone);
+
     while (true)
     {
         wait 0.05;
@@ -551,4 +556,43 @@ GenerateSplit(split, split_numbers, song_id)
 	hud_split.alpha = 1;
 
     return;
+}
+
+TimerColorController()
+{
+	self endon("disconnect");
+    level endon("end_game");
+
+    current_hud = "default";
+
+    while (true)
+    {
+        wait 0.1;
+
+        if (current_hud == getDvar("hud_color"))
+            continue;
+
+        current_hud = getDvar("hud_color");
+        temp_colors = GetRgbFromString(current_hud);
+        level notify("hud_color_changed", temp_colors);
+    }
+}
+
+ColorChangeWatcher(hud)
+{
+	self endon("disconnect");
+    level endon("end_game");
+
+    if (!isDefined(hud))
+        return;
+
+    while (true)
+    {
+        level waittill("hud_color_changed", new_colors);
+
+        if (IsInDebugMode())
+            iPrintLn("color change: " + string(new_colors));
+
+        hud.color = new_colors;
+    }
 }
