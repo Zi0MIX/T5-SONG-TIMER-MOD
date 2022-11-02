@@ -196,7 +196,9 @@ ModSetup()
     flag_init("song_nacht");
     flag_init("game_started");
 
-    song_dvars = array("zm_song_start", "debug_compass", "hud_color", "split");
+    // This dvar has to always be overriden for .menu hud elems
+    setDvar("zm_song_start", 0);
+    song_dvars = array("debug_compass", "hud_color", "split");
     for (d=0; d<song_dvars.size; d++)
         InitSongDvar(song_dvars[d]);
 
