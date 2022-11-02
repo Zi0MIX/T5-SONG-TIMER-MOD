@@ -230,6 +230,8 @@ SpeedTracker()
     PlayerThreadBlackscreenWaiter();
     AwaitLander();
 
+    current_velocity_size = getDvarFloat("velocity_size");
+
 	hud_velocity_value = NewClientHudElem(self);
 	hud_velocity_value.horzAlign = "center";
 	hud_velocity_value.vertAlign = "middle";
@@ -237,7 +239,7 @@ SpeedTracker()
 	hud_velocity_value.alignY = "middle";
 	hud_velocity_value.x = 0;
 	hud_velocity_value.y = 155;
-	hud_velocity_value.fontScale = 1.7;
+	hud_velocity_value.fontScale = current_velocity_size;
 	hud_velocity_value.alpha = 1;
 	hud_velocity_value.hidewheninmenu = 1;
 	hud_velocity_value.foreground = 1;
@@ -287,6 +289,12 @@ SpeedTracker()
         {
             hud_velocity_value.color = (0.6, 0, 0);
             hud_velocity_value.glowcolor = (0.3, 0, 0);
+        }
+
+        if (current_velocity_size != getDvarFloat("velocity_size"))
+        {
+            current_velocity_size = getDvarFloat("velocity_size");
+            hud_velocity_value.fontScale = current_velocity_size;
         }
         
         hud_velocity_value setValue(velocity);

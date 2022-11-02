@@ -198,7 +198,7 @@ ModSetup()
 
     // This dvar has to always be overriden for .menu hud elems
     setDvar("zm_song_start", 0);
-    song_dvars = array("debug_compass", "hud_color", "split");
+    song_dvars = array("debug_compass", "hud_color", "split", "velocity_size");
     for (d=0; d<song_dvars.size; d++)
         InitSongDvar(song_dvars[d]);
 

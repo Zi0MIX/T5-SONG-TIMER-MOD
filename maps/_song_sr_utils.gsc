@@ -588,6 +588,8 @@ GetDvarDefault(dvar)
             return "default";
         case "split":
             return "Select a split";
+        case "velocity_size":
+            return "1.7";
         default:
             return "0";
     }
