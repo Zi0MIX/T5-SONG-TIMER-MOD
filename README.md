@@ -1,16 +1,22 @@
 # A patch with automated timers for accurate timing of song speedruns.
 
+## The mod is discontinued
+Mod support ends with version 3.0, i do not agree with the community decision of allowing Plutonium for competitive song games, therefore i've decided to stop supporting it. I may fix some critical bugs if any occur, but features or non-critical bugs won't be worked on. I may accept pull requests if they preserve ruleset integrity.
+
 ### Timing rules
 - Start position: When screen fades in </br>
 - Finish position: Immidiately after all conditions required for playing the music are met </br>
 
-### Details
-- Mod is built for Steam, but it should run on Plutonium as well. Avoid joining games in progress. </br>
-- Patch supports all BO1 Song Easter Eggs </br>
-- If you want to report a problem or request a feature, you may use the Issues section. </br>
-- [GameMod](https://github.com/Nukem9/LinkerMod/releases/tag/v1.3.2) is **required** for this mod to work. Simply put most recent release in `Mods` folder inside your BO1 folder. Please reffer to [Google](https://www.google.com/search?q=black+ops+1+%22gamemod%22+installation) if you do not know how to install GameMod to your BO1. No it won't get you banned and it won't screw your game in any way.
+### Instalation
+How to install the mod.
+##### Steam
+- [GameMod](https://github.com/Nukem9/LinkerMod/releases/tag/v1.3.2) is **required** for this mod to work. Simply put most recent release in `Mods` folder inside your BO1 folder. Please reffer to [Google](https://www.google.com/search?q=black+ops+1+%22gamemod%22+installation) if you do not know how to install GameMod to your BO1. No it won't get you banned and it won't screw your game in any way. [Video tutorial](https://youtu.be/k92N0RlBDBk) by Skimpy.
+##### Plutonium
+- Create `mods` folder in `\AppData\Local\Plutonium\storage\t5` and put most recent release there.
 
 ### Features
+- The mod is built for steam, however it succesfully launches on Plutonium. I cannot guarantee that all the functions work properly.</br>
+- Patch supports all BO1 Song Easter Eggs.</br>
 
 ##### Auto splits for songs. 
 - Accurate to 2 decimal points (functions refresh every 0.05 seconds, which is the highest rate a GSC script can run on).
@@ -46,3 +52,10 @@
 - Songs now have splits
 - Moon now requires pre-selection of the song
 - Verruckt spawns are now set for White & Blue to always spawn on Jug Side
+
+### V2.1
+- Velocity Meter was changed to look like on First Room Fix
+- GSPEED is not longer displaying at all times, instead an allert is triggered if the value is changed
+- Fixes to `split` dvar.
+
+### 3.0
