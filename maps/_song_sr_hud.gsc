@@ -46,13 +46,13 @@ Welcome()
 
     network_frame = GetNetworkFrame();
 
-    introduction_hud setText("SONGS AUTO-TIMER V" + string(level.PATCH_VERSION));
+    introduction_hud setText(&"SONGS_INTRODUCE", string(level.PATCH_VERSION));
     introduction_hud fadeOverTime(0.25);
     introduction_hud.alpha = 1;
-    network_hud setText("NETWORK FRAME: " + network_frame);
+    network_hud setText(&"SONGS_NETWORK_FRAME", network_frame);
     network_hud fadeOverTime(0.25);
     network_hud.alpha = 1;
-    launcher_hud setText("LAUNCHER MODE: " + IsPlutoniumStr());
+    launcher_hud setText(&"SONGS_LAUNCHER", IsPlutoniumStr());
     launcher_hud fadeOverTime(0.25);
     launcher_hud.alpha = 1;
 
@@ -74,11 +74,6 @@ Welcome()
 
 AskForSplit(is_selected)
 {
-    if (is_selected)
-        override = "SELECTED SONG: " + TranslateSongName();
-    else
-        override = "No split selected. Select a split using '/split' command. Then 'fast_restart' the game.";
-
 	split_selection_hud = NewHudElem();
 	split_selection_hud.horzAlign = "center";
 	split_selection_hud.vertAlign = "middle";
@@ -92,7 +87,11 @@ AskForSplit(is_selected)
 	split_selection_hud.foreground = 1;
 	split_selection_hud.color = (1, 0.6, 0.6);
 
-    split_selection_hud setText(override);
+    if (is_selected)
+        split_selection_hud setText(&"SONGS_SELECTION", TranslateSongName());
+    else
+        split_selection_hud setText(&"SONGS_NO_SELECTION");
+
     split_selection_hud fadeOverTime(0.25);
     split_selection_hud.alpha = 1;
     wait 5;
@@ -357,7 +356,7 @@ GSpeedController()
 	hud_gspeed_mark.foreground = 1;
 	hud_gspeed_mark.color = (0.8, 0, 0);
 
-    hud_gspeed_mark setText ("GSPEED CHANGED (" + getDvar("g_speed") + ")");
+    hud_gspeed_mark setText (&"SONGS_WARNING_GSPEED", getDvar("g_speed"));
 
     while (true)
     {
@@ -366,7 +365,7 @@ GSpeedController()
         if (getDvar("g_speed") == gspeed_val)
             continue;
 
-        hud_gspeed_mark setText ("GSPEED CHANGED (" + getDvar("g_speed") + ")");
+        hud_gspeed_mark setText (&"SONGS_WARNING_GSPEED", getDvar("g_speed"));
         gspeed_val = getDvar("g_speed");
     }
 
@@ -563,9 +562,8 @@ GenerateSplit(split, split_numbers, song_id)
 	hud_split.hidewheninmenu = 1;
 	hud_split.foreground = 1;
 	hud_split.color = (0.8, 0.8, 0.8);
-    hud_split.label = "" + split + ": ";
     
-    hud_split setText(GetTimeDetailed(true, split_time));
+    hud_split setText(split, ": ", GetTimeDetailed(true, split_time));
 	hud_split.alpha = 1;
 
     return;

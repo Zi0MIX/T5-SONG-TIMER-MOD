@@ -30,6 +30,31 @@ ModSetup()
     PrecacheString(&"SONGS_ATTEMPTS");
     PrecacheString(&"SONGS_YES");
     PrecacheString(&"SONGS_NO");
+    PrecacheString(&"SONGS_INTRODUCE");
+    PrecacheString(&"SONGS_NETWORK_FRAME");
+    PrecacheString(&"SONGS_LAUNCHER");
+    PrecacheString(&"SONGS_SELECTION");
+    PrecacheString(&"SONGS_NO_SELECTION");
+    PrecacheString(&"SONGS_WARNING_GSPEED");
+    PreCacheString(&"SONGS_WARNING_HOTJOIN");
+    PreCacheString(&"SONGS_SPLIT_METEOR_FIRST");
+    PreCacheString(&"SONGS_SPLIT_METEOR_SECOND");
+    PreCacheString(&"SONGS_SPLIT_PHONE_FIRST");
+    PreCacheString(&"SONGS_SPLIT_PHONE_SECOND");
+    PreCacheString(&"SONGS_SPLIT_TEDDY_FIRST");
+    PreCacheString(&"SONGS_SPLIT_TEDDY_SECOND");
+    PreCacheString(&"SONGS_SPLIT_BARREL_FIRST");
+    PreCacheString(&"SONGS_SPLIT_BARREL_SECOND");
+    PreCacheString(&"SONGS_SPLIT_NO_MANS_LAND");
+    PreCacheString(&"SONGS_SPLIT_POWER");
+    PreCacheString(&"SONGS_SPLIT_BREACH_11");
+    PreCacheString(&"SONGS_SPLIT_BREACH_6");
+    PreCacheString(&"SONGS_SPLIT_HELP_DOOR");
+    PreCacheString(&"SONGS_SPLIT_TOILET");
+    PreCacheString(&"SONGS_SPLIT_SPAWN_DOOR");
+    PreCacheString(&"SONGS_SPLIT_COMMS_DOOR");
+    PreCacheString(&"SONGS_SPLIT_TUBE");
+    PreCacheString(&"SONGS_SPLIT_HANGAR");
 
     if (IsKino())
     {
@@ -206,7 +231,7 @@ ModSetup()
 
     level.PATCH_VERSION = 3;
     level.WAIT_FOR_8BIT = true;
-    level.SONG_DEBUG = false;
+    level.SONG_DEBUG = true;
     level.VALIDATE_NETWORK_FRAME = true;
 
     level.playing_songs = 0;
@@ -609,7 +634,7 @@ SpawnSongs()
         one_one_five = spawnStruct();
         one_one_five.title = "115";
         one_one_five.func = ::SongWatcher;
-        one_one_five.splits = array("First Meteor", "Second Meteor");
+        one_one_five.splits = array(&"SONGS_SPLIT_METEOR_FIRST", &"SONGS_SPLIT_METEOR_SECOND");
         all_songs[all_songs.size] = one_one_five;
     }
 
@@ -618,7 +643,7 @@ SpawnSongs()
         wont_back_down = spawnStruct();
         wont_back_down.title = "Won't Back Down";
         wont_back_down.func = ::SongWatcher;
-        wont_back_down.splits = array("First Phone", "Second Phone");
+        wont_back_down.splits = array(&"SONGS_SPLIT_PHONE_FIRST", &"SONGS_SPLIT_PHONE_SECOND");
         all_songs[all_songs.size] = wont_back_down;
     }
 
@@ -627,7 +652,7 @@ SpawnSongs()
         abracadavre = spawnStruct();
         abracadavre.title = "Abracadavre";
         abracadavre.func = ::SongWatcher;
-        abracadavre.splits = array("First Teddy", "Second Teddy");
+        abracadavre.splits = array(&"SONGS_SPLIT_TEDDY_FIRST", &"SONGS_SPLIT_TEDDY_FIRST");
         all_songs[all_songs.size] = abracadavre;
     }
 
@@ -636,7 +661,7 @@ SpawnSongs()
         not_ready_to_die = spawnStruct();
         not_ready_to_die.title = "Not Ready to Die";
         not_ready_to_die.func = ::SongWatcher;
-        not_ready_to_die.splits = array("First Meteor", "Second Meteor");
+        not_ready_to_die.splits = array(&"SONGS_SPLIT_METEOR_FIRST", &"SONGS_SPLIT_METEOR_SECOND");
         all_songs[all_songs.size] = not_ready_to_die;
     }
 
@@ -645,7 +670,7 @@ SpawnSongs()
         pareidolia = spawnStruct();
         pareidolia.title = "Pareidolia";
         pareidolia.func = ::SongWatcher;
-        pareidolia.splits = array("First Meteor", "Second Meteor");
+        pareidolia.splits = array(&"SONGS_SPLIT_METEOR_FIRST", &"SONGS_SPLIT_METEOR_SECOND");
         all_songs[all_songs.size] = pareidolia;
     }
 
@@ -655,7 +680,7 @@ SpawnSongs()
         coming_home.title = "Coming Home";
         coming_home.func = ::MoonSongWatcher;
         coming_home.splitfunc = ::MoonSplits;
-        coming_home.splits = array("No Man's Land", "First Teddy", "Second Teddy");
+        coming_home.splits = array(&"SONGS_SPLIT_NO_MANS_LAND", &"SONGS_SPLIT_TEDDY_FIRST", &"SONGS_SPLIT_TEDDY_SECOND");
         coming_home.split_offset = 1;
         all_songs[all_songs.size] = coming_home;
 
@@ -663,7 +688,7 @@ SpawnSongs()
         coming_home_8.title = "Coming Home 8-bit";
         coming_home_8.func = ::EightBitWatcher;
         coming_home_8.splitfunc = ::MoonSplits;
-        coming_home_8.splits = array("No Man's Land", "Power");
+        coming_home_8.splits = array(&"SONGS_SPLIT_NO_MANS_LAND", &"SONGS_SPLIT_POWER");
         coming_home_8.trigger = "mus_8bit_0";
         coming_home_8.split_offset = 2;
         all_songs[all_songs.size] = coming_home_8;
@@ -672,7 +697,7 @@ SpawnSongs()
         pareidolia_8.title = "Pareidolia 8-bit";
         pareidolia_8.func = ::EightBitWatcher;
         pareidolia_8.splitfunc = ::MoonSplits;
-        pareidolia_8.splits = array("No Man's Land", "Power");
+        pareidolia_8.splits = array(&"SONGS_SPLIT_NO_MANS_LAND", &"SONGS_SPLIT_POWER");
         pareidolia_8.trigger = "mus_8bit_1";
         pareidolia_8.split_offset = 2;
         all_songs[all_songs.size] = pareidolia_8;
@@ -681,7 +706,7 @@ SpawnSongs()
         re_damned.title = "Re-Damned";
         re_damned.func = ::EightBitWatcher;
         re_damned.splitfunc = ::MoonSplits;
-        re_damned.splits = array("No Man's Land", "Power");
+        re_damned.splits = array(&"SONGS_SPLIT_NO_MANS_LAND", &"SONGS_SPLIT_POWER");
         re_damned.trigger = "mus_8bit_2";
         re_damned.split_offset = 2;
         all_songs[all_songs.size] = re_damned;
@@ -690,7 +715,7 @@ SpawnSongs()
         nightmare.title = "Nightmare";
         nightmare.func = ::A7xHandler;
         nightmare.splitfunc = ::MoonSplits;
-        nightmare.splits = array("No Man's Land", "Power", "Breach Tunnel 11", "Breach Tunnel 6");
+        nightmare.splits = array(&"SONGS_SPLIT_NO_MANS_LAND", &"SONGS_SPLIT_POWER", &"SONGS_SPLIT_BREACH_11", &"SONGS_SPLIT_BREACH_6");
         nightmare.split_offset = 2;
         all_songs[all_songs.size] = nightmare;
     }
@@ -700,14 +725,14 @@ SpawnSongs()
         undone = spawnStruct();
         undone.title = "Undone";
         undone.func = ::SongWatcher;
-        undone.splits = array("First Barrel", "Second Barrel");
+        undone.splits = array(&"SONGS_SPLIT_BARREL_FIRST", &"SONGS_SPLIT_BARREL_SECOND");
         all_songs[all_songs.size] = undone;
 
         radio = spawnStruct();
         radio.title = "Radio";
         radio.func = ::NachtCounter;
         radio.splitfunc = ::SplitWatcherHub;
-        radio.splits = array("Help Doors");
+        radio.splits = array(&"SONGS_SPLIT_HELP_DOOR");
         all_songs[all_songs.size] = radio;
     }
 
@@ -717,7 +742,7 @@ SpawnSongs()
         lullaby.title = "Lullaby for a Dead Man";
         lullaby.func = ::SongWatcher;
         lullaby.splitfunc = ::ZoneScanner;
-        lullaby.splits = array("First Doors", "Reached Toilet");
+        lullaby.splits = array(&"SONGS_SPLIT_SPAWN_DOOR", &"SONGS_SPLIT_TOILET");
         all_songs[all_songs.size] = lullaby;
     }
 
@@ -727,7 +752,7 @@ SpawnSongs()
         the_one.title = "The One";
         the_one.func = ::SongWatcher;
         the_one.splitfunc = ::SplitWatcherHub;
-        the_one.splits = array("Spawn Doors", "Comms Doors");
+        the_one.splits = array(&"SONGS_SPLIT_SPAWN_DOOR", &"SONGS_SPLIT_COMMS_DOOR");
         all_songs[all_songs.size] = the_one;
     }
 
@@ -737,7 +762,7 @@ SpawnSongs()
         beauty_of_annihilation.title = "Beauty of Annihilation";
         beauty_of_annihilation.func = ::FirstUseSongWatcher;
         beauty_of_annihilation.splitfunc = ::ZoneScanner;
-        beauty_of_annihilation.splits = array("First Tube", "Reached DT");
+        beauty_of_annihilation.splits = array(&"SONGS_SPLIT_TUBE", &"SONGS_SPLIT_HANGAR");
         all_songs[all_songs.size] = beauty_of_annihilation;
     }
 

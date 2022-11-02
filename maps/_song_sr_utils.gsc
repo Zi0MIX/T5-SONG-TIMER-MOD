@@ -631,7 +631,7 @@ HotJoinMonitor()
             hud_hotjoin_mark.foreground = 1;
             hud_hotjoin_mark.color = (0.8, 0, 0);
 
-            hud_hotjoin_mark setText("HOTJOIN DETECTED");
+            hud_hotjoin_mark setText(&"SONGS_WARNING_HOTJOIN");
 
             break;
         }
