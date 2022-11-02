@@ -570,3 +570,44 @@ GetRgbFromString(str)
             return (1, 0.8, 1);
     }
 }
+
+InitSongDvar(dvar)
+{
+    // wait 1;
+    // iPrintLn("dvar: " + string(dvar) + " is: " + string(getDvar(dvar)));
+    if (getDvar(dvar) == "")
+        setDvar(dvar, GetDvarDefault(dvar));
+    return;
+}
+
+GetDvarDefault(dvar)
+{
+    switch (dvar)
+    {
+        case "hud_color":
+            return "default";
+        case "split":
+            return "Select a split";
+        default:
+            return "0";
+    }
+}
+
+SetDefaultSplit()
+{
+    switch (getDvar("split"))
+    {
+        case "coming home":
+        case "nightmare":
+        case "redamned":
+        case "coming home 8":
+        case "pareidolia 8":
+            if (IsMoon())
+                self thread maps\_song_sr_hud::AskForSplit(true);
+            return;
+        default:
+            if (IsMoon())
+                self thread maps\_song_sr_hud::AskForSplit(false);
+            return;
+    }
+}

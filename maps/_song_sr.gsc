@@ -196,9 +196,9 @@ ModSetup()
     flag_init("song_nacht");
     flag_init("game_started");
 
-    setDvar("zm_song_start", 0);
-    setDvar("debug_compass", 0);
-    setDvar("hud_color", "default");
+    song_dvars = array("zm_song_start", "debug_compass", "hud_color", "split");
+    for (d=0; d<song_dvars.size; d++)
+        InitSongDvar(song_dvars[d]);
 
     SetDefaultSplit();
 
@@ -209,26 +209,6 @@ ModSetup()
 
     level.playing_songs = 0;
     level.longest_splits = 0;
-}
-
-SetDefaultSplit()
-{
-    switch (getDvar("split"))
-    {
-        case "coming home":
-        case "nightmare":
-        case "redamned":
-        case "coming home 8":
-        case "pareidolia 8":
-            if (IsMoon())
-                self thread AskForSplit(true);
-            return;
-        default:
-            if (IsMoon())
-                self thread AskForSplit(false);
-            setDvar("split", "Select a split");
-            return;
-    }
 }
 
 SongInit()
