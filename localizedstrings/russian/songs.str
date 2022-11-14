@@ -1,0 +1,99 @@
+VERSION             "1"
+CONFIG              "C:\projects\cod\t5\bin\StringEd.cfg"
+FILENOTES           ""
+
+REFERENCE           "POINTDROP_LABEL"
+LANG_RUSSIAN        "POINTDROP: "
+
+REFERENCE           "VELOCITY_LABEL"
+LANG_RUSSIAN        "СКОРОСТЬ: "
+
+REFERENCE           "GSPEED_LABEL"
+LANG_RUSSIAN        "GSPEED: "
+
+REFERENCE           "ATTEMPTS"
+LANG_RUSSIAN        "ПОПЫТКИ: "
+
+REFERENCE           "YES"
+LANG_RUSSIAN        "ДА"
+
+REFERENCE           "NO"
+LANG_RUSSIAN        "НЕТ"
+
+REFERENCE           "INTRODUCE"
+LANG_RUSSIAN        "АВТОТАЙМЕР ПЕСЕН V"
+
+REFERENCE           "NETWORK_FRAME"
+LANG_RUSSIAN        "NETWORK FRAME: "
+
+REFERENCE           "LAUNCHER"
+LANG_RUSSIAN        "КЛИЕНТ: "
+
+REFERENCE           "SELECTION"
+LANG_RUSSIAN        "ВЫБРАННАЯ ПЕСНЯ: "
+
+REFERENCE           "NO_SELECTION"
+LANG_RUSSIAN        "Сплит не выбран. Выберите сплит, используя команду '/split'. Затем перезапустите игру '/fast_restart'"
+
+REFERENCE           "WARNING_GSPEED"
+LANG_RUSSIAN        "GSPEED ИЗМЕНЕН "
+
+REFERENCE           "WARNING_HOTJOIN"
+LANG_RUSSIAN        "ОБНАРУЖЕН HOTJOIN"
+
+REFERENCE           "SPLIT_METEOR_FIRST"
+LANG_RUSSIAN        "Первый метеор"
+
+REFERENCE           "SPLIT_METEOR_SECOND"
+LANG_RUSSIAN        "Второй метеор"
+
+REFERENCE           "SPLIT_PHONE_FIRST"
+LANG_RUSSIAN        "Первый телефон"
+
+REFERENCE           "SPLIT_PHONE_SECOND"
+LANG_RUSSIAN        "Второй телефон"
+
+REFERENCE           "SPLIT_TEDDY_FIRST"
+LANG_RUSSIAN        "Первый Тедди"
+
+REFERENCE           "SPLIT_TEDDY_SECOND"
+LANG_RUSSIAN        "Второй Тедди"
+
+REFERENCE           "SPLIT_NO_MANS_LAND"
+LANG_RUSSIAN        "Ничейная земля"
+
+REFERENCE           "SPLIT_POWER"
+LANG_RUSSIAN        "Сила"
+
+REFERENCE           "SPLIT_BREACH_11"
+LANG_RUSSIAN        "Разлом в туннеле 11"
+
+REFERENCE           "SPLIT_BREACH_6"
+LANG_RUSSIAN        "Разлом в туннеле 6"
+
+REFERENCE           "SPLIT_BARREL_FIRST"
+LANG_RUSSIAN        "Первая бочка"
+
+REFERENCE           "SPLIT_BARREL_SECOND"
+LANG_RUSSIAN        "Вторая бочка"
+
+REFERENCE           "SPLIT_HELP_DOOR"
+LANG_RUSSIAN        "Двери помощи"
+
+REFERENCE           "SPLIT_TOILET"
+LANG_RUSSIAN        "Достигнут туалет"
+
+REFERENCE           "SPLIT_SPAWN_DOOR"
+LANG_RUSSIAN        "Двери спауна"
+
+REFERENCE           "SPLIT_COMMS_DOOR"
+LANG_RUSSIAN        "Двери связи"
+
+REFERENCE           "SPLIT_TUBE"
+LANG_RUSSIAN        "Первая труба"
+
+REFERENCE           "SPLIT_HANGAR"
+LANG_RUSSIAN        "Достигнут ангар"
+
+
+ENDMARKER

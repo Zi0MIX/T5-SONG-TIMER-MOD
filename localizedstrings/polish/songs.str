@@ -1,0 +1,99 @@
+VERSION             "1"
+CONFIG              "C:\projects\cod\t5\bin\StringEd.cfg"
+FILENOTES           ""
+
+REFERENCE           "POINTDROP_LABEL"
+LANG_POLISH         "GWARANTOWANY BONUS: "
+
+REFERENCE           "VELOCITY_LABEL"
+LANG_POLISH         "PRĘDKOŚĆ: "
+
+REFERENCE           "GSPEED_LABEL"
+LANG_POLISH         "GSPEED: "
+
+REFERENCE           "ATTEMPTS"
+LANG_POLISH         "PODEJŚCIA: "
+
+REFERENCE           "YES"
+LANG_POLISH         "TAK"
+
+REFERENCE           "NO"
+LANG_POLISH         "NIE"
+
+REFERENCE           "INTRODUCE"
+LANG_POLISH         "SONGS AUTO-TIMER V"
+
+REFERENCE           "NETWORK_FRAME"
+LANG_POLISH         "NETWORK FRAME: "
+
+REFERENCE           "LAUNCHER"
+LANG_POLISH         "KLIENT: "
+
+REFERENCE           "SELECTION"
+LANG_POLISH         "WYBRANA MUZYKA: "
+
+REFERENCE           "NO_SELECTION"
+LANG_POLISH         "Nie wybrano muzyki. Wybierz muzyke używając komendy '/split', następnie '/fast_restart' aby zrestartować grę."
+
+REFERENCE           "WARNING_GSPEED"
+LANG_POLISH         "ZMIANA GSPEED "
+
+REFERENCE           "WARNING_HOTJOIN"
+LANG_POLISH         "DOŁĄCZENIE W TRAKCIE"
+
+REFERENCE           "SPLIT_METEOR_FIRST"
+LANG_POLISH         "Pierwszy Meteoryt"
+
+REFERENCE           "SPLIT_METEOR_SECOND"
+LANG_POLISH         "Drugi Meteoryt"
+
+REFERENCE           "SPLIT_PHONE_FIRST"
+LANG_POLISH         "Pierwszy Telefon"
+
+REFERENCE           "SPLIT_PHONE_SECOND"
+LANG_POLISH         "Drugi Telefon"
+
+REFERENCE           "SPLIT_TEDDY_FIRST"
+LANG_POLISH         "Pierwszy Miś"
+
+REFERENCE           "SPLIT_TEDDY_SECOND"
+LANG_POLISH         "Drugi Miś"
+
+REFERENCE           "SPLIT_NO_MANS_LAND"
+LANG_POLISH         "Ziemia Niczyja"
+
+REFERENCE           "SPLIT_POWER"
+LANG_POLISH         "Zasilanie"
+
+REFERENCE           "SPLIT_BREACH_11"
+LANG_POLISH         "Wyłom w Tunelu 11"
+
+REFERENCE           "SPLIT_BREACH_6"
+LANG_POLISH         "Wyłom w Tunelu 6"
+
+REFERENCE           "SPLIT_BARREL_FIRST"
+LANG_POLISH         "Pierwsza beczka"
+
+REFERENCE           "SPLIT_BARREL_SECOND"
+LANG_POLISH         "Druga beczka"
+
+REFERENCE           "SPLIT_HELP_DOOR"
+LANG_POLISH         "Drzwi Pomocy"
+
+REFERENCE           "SPLIT_TOILET"
+LANG_POLISH         "Dotarcie do Toalety"
+
+REFERENCE           "SPLIT_SPAWN_DOOR"
+LANG_POLISH         "Drzwi z Pierwszego Pokoju"
+
+REFERENCE           "SPLIT_COMMS_DOOR"
+LANG_POLISH         "Drzwi do Chaty z Radiem"
+
+REFERENCE           "SPLIT_TUBE"
+LANG_POLISH         "Pierwsza Fiolka"
+
+REFERENCE           "SPLIT_HANGAR"
+LANG_POLISH         "Dotarcie do Hangaru"
+
+
+ENDMARKER

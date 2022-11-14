@@ -1,0 +1,99 @@
+VERSION             "1"
+CONFIG              "C:\projects\cod\t5\bin\StringEd.cfg"
+FILENOTES           ""
+
+REFERENCE           "POINTDROP_LABEL"
+LANG_GERMAN         "PUNKTEDROP KOMMT: "
+
+REFERENCE           "VELOCITY_LABEL"
+LANG_GERMAN         "GESCHWINDIGKEIT: "
+
+REFERENCE           "GSPEED_LABEL"
+LANG_GERMAN         "GSPEED: "
+
+REFERENCE           "ATTEMPTS"
+LANG_GERMAN         "VERSUCHE: "
+
+REFERENCE           "YES"
+LANG_GERMAN         "JA"
+
+REFERENCE           "NO"
+LANG_GERMAN         "NEIN"
+
+REFERENCE           "INTRODUCE"
+LANG_GERMAN         "SONGS AUTO-TIMER V"
+
+REFERENCE           "NETWORK_FRAME"
+LANG_GERMAN         "NETWORKFRAME: "
+
+REFERENCE           "LAUNCHER"
+LANG_GERMAN         "CLIENT: "
+
+REFERENCE           "SELECTION"
+LANG_GERMAN         "AUSGEWÄHLTER SONG: "
+
+REFERENCE           "NO_SELECTION"
+LANG_GERMAN         "Keinen Split ausgewählt. Wähle einen Split mit dem '/split' Kommand. Dann '/fast_restart' das Spiel."
+
+REFERENCE           "WARNING_GSPEED"
+LANG_GERMAN         "GSPEED VERÄNDERT "
+
+REFERENCE           "WARNING_HOTJOIN"
+LANG_GERMAN         "HOTJOIN FESTGESTELLT"
+
+REFERENCE           "SPLIT_METEOR_FIRST"
+LANG_GERMAN         "Erster Meteor"
+
+REFERENCE           "SPLIT_METEOR_SECOND"
+LANG_GERMAN         "Zweiter Meteor"
+
+REFERENCE           "SPLIT_PHONE_FIRST"
+LANG_GERMAN         "Erstes Telefon"
+
+REFERENCE           "SPLIT_PHONE_SECOND"
+LANG_GERMAN         "Zweites Telefon"
+
+REFERENCE           "SPLIT_TEDDY_FIRST"
+LANG_GERMAN         "Erster Teddy"
+
+REFERENCE           "SPLIT_TEDDY_SECOND"
+LANG_GERMAN         "Zweiter Teddy"
+
+REFERENCE           "SPLIT_NO_MANS_LAND"
+LANG_GERMAN         "Niemandsland"
+
+REFERENCE           "SPLIT_POWER"
+LANG_GERMAN         "Strom"
+
+REFERENCE           "SPLIT_BREACH_11"
+LANG_GERMAN         "Tunnel 11 gebrochen"
+
+REFERENCE           "SPLIT_BREACH_6"
+LANG_GERMAN         "Tunnel 6 gebrochen"
+
+REFERENCE           "SPLIT_BARREL_FIRST"
+LANG_GERMAN         "Erstes Fass"
+
+REFERENCE           "SPLIT_BARREL_SECOND"
+LANG_GERMAN         "Zweites Fass"
+
+REFERENCE           "SPLIT_HELP_DOOR"
+LANG_GERMAN         "Hilfe Türen"
+
+REFERENCE           "SPLIT_TOILET"
+LANG_GERMAN         "Toilette erreicht"
+
+REFERENCE           "SPLIT_SPAWN_DOOR"
+LANG_GERMAN         "Anfangsraum Türen"
+
+REFERENCE           "SPLIT_COMMS_DOOR"
+LANG_GERMAN         "Kommunikations Türen"
+
+REFERENCE           "SPLIT_TUBE"
+LANG_GERMAN         "Erstes Rohr"
+
+REFERENCE           "SPLIT_HANGAR"
+LANG_GERMAN         "Hangar erreicht"
+
+
+ENDMARKER

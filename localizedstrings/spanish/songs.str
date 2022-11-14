@@ -1,0 +1,99 @@
+VERSION             "1"
+CONFIG              "C:\projects\cod\t5\bin\StringEd.cfg"
+FILENOTES           ""
+
+REFERENCE           "POINTDROP_LABEL"
+LANG_SPANISH        "DROP POR PUNTOS: "
+
+REFERENCE           "VELOCITY_LABEL"
+LANG_SPANISH        "VELOCIDAD: "
+
+REFERENCE           "GSPEED_LABEL"
+LANG_SPANISH        "GSPEED: "
+
+REFERENCE           "ATTEMPTS"
+LANG_SPANISH        "INTENTOS: "
+
+REFERENCE           "YES"
+LANG_SPANISH        "SI"
+
+REFERENCE           "NO"
+LANG_SPANISH        "NO"
+
+REFERENCE           "INTRODUCE"
+LANG_SPANISH        "SONGS AUTO-TIMER V"
+
+REFERENCE           "NETWORK_FRAME"
+LANG_SPANISH        "NETWORK FRAME: "
+
+REFERENCE           "LAUNCHER"
+LANG_SPANISH        "CLIENTE: "
+
+REFERENCE           "SELECTION"
+LANG_SPANISH        "CANCIÓN SELECCIONADA: "
+
+REFERENCE           "NO_SELECTION"
+LANG_SPANISH        "Canción no seleccionada. Elige la canción usando el comando '/split', después usa '/fast_restart'."
+
+REFERENCE           "WARNING_GSPEED"
+LANG_SPANISH        "GSPEED MODIFICADO"
+
+REFERENCE           "WARNING_HOTJOIN"
+LANG_SPANISH        "Conexión De Jugador Detectada"
+
+REFERENCE           "SPLIT_METEOR_FIRST"
+LANG_SPANISH        "Primer Meteorito"
+
+REFERENCE           "SPLIT_METEOR_SECOND"
+LANG_SPANISH        "Segundo Meteorito"
+
+REFERENCE           "SPLIT_PHONE_FIRST"
+LANG_SPANISH        "Primer Teléfono"
+
+REFERENCE           "SPLIT_PHONE_SECOND"
+LANG_SPANISH        "Segundo Teléfono"
+
+REFERENCE           "SPLIT_TEDDY_FIRST"
+LANG_SPANISH        "primer Oso"
+
+REFERENCE           "SPLIT_TEDDY_SECOND"
+LANG_SPANISH        "Segundo Oso"
+
+REFERENCE           "SPLIT_NO_MANS_LAND"
+LANG_SPANISH        "No Man's Land"
+
+REFERENCE           "SPLIT_POWER"
+LANG_SPANISH        "Electricidad"
+
+REFERENCE           "SPLIT_BREACH_11"
+LANG_SPANISH        "Brecha Tunel 11"
+
+REFERENCE           "SPLIT_BREACH_6"
+LANG_SPANISH        "Brecha Tunel 6"
+
+REFERENCE           "SPLIT_BARREL_FIRST"
+LANG_SPANISH        "Primer Barril"
+
+REFERENCE           "SPLIT_BARREL_SECOND"
+LANG_SPANISH        "Segundo Barril"
+
+REFERENCE           "SPLIT_HELP_DOOR"
+LANG_SPANISH        "Puerta Help"
+
+REFERENCE           "SPLIT_TOILET"
+LANG_SPANISH        "Retrete Alcanzado"
+
+REFERENCE           "SPLIT_SPAWN_DOOR"
+LANG_SPANISH        "Puertas Del Spawn"
+
+REFERENCE           "SPLIT_COMMS_DOOR"
+LANG_SPANISH        "Puerta De Telecomunicaciones"
+                     
+REFERENCE           "SPLIT_TUBE"
+LANG_SPANISH        "Primer Tubo"
+
+REFERENCE           "SPLIT_HANGAR"
+LANG_SPANISH        "Hangar Alcanzado"
+
+
+ENDMARKER
