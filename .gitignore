@@ -2,5 +2,6 @@
 *.log
 *.files
 *.ff
+*.iwd
 missingasset.csv
 /dev
