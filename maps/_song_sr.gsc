@@ -234,7 +234,7 @@ ModSetup()
 
     level.PATCH_VERSION = 3;
     level.WAIT_FOR_8BIT = true;
-    level.SONG_DEBUG = true;
+    level.SONG_DEBUG = false;
     level.VALIDATE_NETWORK_FRAME = true;
 
     level.playing_songs = 0;
