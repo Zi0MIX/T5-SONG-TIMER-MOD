@@ -531,6 +531,7 @@ init_shellshocks()
 
 init_strings()
 {
+	maps\_song_sr::SongStrings();
 	PrecacheString( &"ZOMBIE_WEAPONCOSTAMMO" );
 	PrecacheString( &"ZOMBIE_ROUND" );
 	PrecacheString( &"SCRIPT_PLUS" );

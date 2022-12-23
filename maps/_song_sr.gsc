@@ -25,7 +25,7 @@ SongSrInit()
 
 // Setup
 
-ModSetup()
+SongStrings()
 {
     PrecacheString(&"SONGS_ATTEMPTS");
     PrecacheString(&"SONGS_YES");
@@ -217,7 +217,10 @@ ModSetup()
         PrecacheString(&"ZONES_ZOMBIE_COD5_FACTORY_OUTSIDE_SOUTH_ZONE");
         PrecacheString(&"ZONES_ZOMBIE_COD5_FACTORY_TP_SOUTH_ZONE");
     }
+}
 
+ModSetup()
+{
     flag_init("song_nacht");
     flag_init("game_started");
 

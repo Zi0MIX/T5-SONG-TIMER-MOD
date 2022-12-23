@@ -3,10 +3,10 @@ CONFIG              "C:\projects\cod\t5\bin\StringEd.cfg"
 FILENOTES           ""
 
 REFERENCE           "POINTDROP_LABEL"
-LANG_FRENCH         "ARRIVÉE DU POINT DE CHUTE: "
+LANG_FRENCH         "ARRIVÃ‰E DU POINT DE CHUTE: "
 
 REFERENCE           "VELOCITY_LABEL"
-LANG_FRENCH         "VÉLOCITÉ: "
+LANG_FRENCH         "VÃ‰LOCITÃ‰: "
 
 REFERENCE           "GSPEED_LABEL"
 LANG_FRENCH         "VITESSE G: "
@@ -24,40 +24,40 @@ REFERENCE           "INTRODUCE"
 LANG_FRENCH         "MUSIQUES AUTO-TIMER V"
 
 REFERENCE           "NETWORK_FRAME"
-LANG_FRENCH         "CADRE RÉSEAU: "
+LANG_FRENCH         "CADRE RÃ‰SEAU: "
 
 REFERENCE           "LAUNCHER"
 LANG_FRENCH         "CLIENT: "
 
 REFERENCE           "SELECTION"
-LANG_FRENCH         "MUSIQUE SELECTIONÉE: "
+LANG_FRENCH         "MUSIQUE SELECTIONÃ‰E: "
 
 REFERENCE           "NO_SELECTION"
-LANG_FRENCH         "Aucun split sélectionné. Selectionnez un split en utilisant la commande '/split'. Puis entrez la commande  '/fast_restart'."
+LANG_FRENCH         "Aucun split sÃ©lectionnÃ©. Selectionnez un split en utilisant la commande '/split'. Puis entrez la commande  '/fast_restart'."
 
 REFERENCE           "WARNING_GSPEED"
 LANG_FRENCH         "VITESSE G CHANGEE"
 
 REFERENCE           "WARNING_HOTJOIN"
-LANG_FRENCH         "HOTJOIN DETECTÉ"
+LANG_FRENCH         "HOTJOIN DETECTÃ‰"
 
 REFERENCE           "SPLIT_METEOR_FIRST"
-LANG_FRENCH         "Premier Météore"
+LANG_FRENCH         "Premier MÃ©tÃ©ore"
 
 REFERENCE           "SPLIT_METEOR_SECOND"
-LANG_FRENCH         "Deuxième Météore"
+LANG_FRENCH         "DeuxiÃ¨me MÃ©tÃ©ore"
 
 REFERENCE           "SPLIT_PHONE_FIRST"
-LANG_FRENCH         "Premier Téléphone"
+LANG_FRENCH         "Premier TÃ©lÃ©phone"
 
 REFERENCE           "SPLIT_PHONE_SECOND"
-LANG_FRENCH         "Deuxième Téléphone"
+LANG_FRENCH         "DeuxiÃ¨me TÃ©lÃ©phone"
 
 REFERENCE           "SPLIT_TEDDY_FIRST"
-LANG_FRENCH         "Première Peluche"
+LANG_FRENCH         "PremiÃ¨re Peluche"
 
 REFERENCE           "SPLIT_TEDDY_SECOND"
-LANG_FRENCH         "Deuxième Peluche"
+LANG_FRENCH         "DeuxiÃ¨me Peluche"
 
 REFERENCE           "SPLIT_NO_MANS_LAND"
 LANG_FRENCH         "No Man's Land"
@@ -66,22 +66,22 @@ REFERENCE           "SPLIT_POWER"
 LANG_FRENCH         "Courant"
 
 REFERENCE           "SPLIT_BREACH_11"
-LANG_FRENCH         "Brèche Tunnel 11"
+LANG_FRENCH         "BrÃ¨che Tunnel 11"
 
 REFERENCE           "SPLIT_BREACH_6"
-LANG_FRENCH         "Brèche Tunnel 6"
+LANG_FRENCH         "BrÃ¨che Tunnel 6"
 
 REFERENCE           "SPLIT_BARREL_FIRST"
 LANG_FRENCH         "Premier Barrel"
 
 REFERENCE           "SPLIT_BARREL_SECOND"
-LANG_FRENCH         "Deuxième Barrel"
+LANG_FRENCH         "DeuxiÃ¨me Barrel"
 
 REFERENCE           "SPLIT_HELP_DOOR"
-LANG_FRENCH         "Portes "À l'aide""
+LANG_FRENCH         "Portes "Ã€ l'aide""
 
 REFERENCE           "SPLIT_TOILET"
-LANG_FRENCH         "Arrivé aux toilettes"
+LANG_FRENCH         "ArrivÃ© aux toilettes"
 
 REFERENCE           "SPLIT_SPAWN_DOOR"
 LANG_FRENCH         "Apparition des portes"
@@ -93,7 +93,7 @@ REFERENCE           "SPLIT_TUBE"
 LANG_FRENCH         "Premier tube
 
 REFERENCE           "SPLIT_HANGAR"
-LANG_FRENCH         "Arrivé au Hangar"
+LANG_FRENCH         "ArrivÃ© au Hangar"
 
 
 ENDMARKER
