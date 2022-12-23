@@ -1,0 +1,99 @@
+VERSION             "1"
+CONFIG              "C:\projects\cod\t5\bin\StringEd.cfg"
+FILENOTES           ""
+
+REFERENCE           "POINTDROP_LABEL"
+LANG_ENGLISH        "POINTDROP COMING: "
+
+REFERENCE           "VELOCITY_LABEL"
+LANG_ENGLISH        "VELOCITY: "
+
+REFERENCE           "GSPEED_LABEL"
+LANG_ENGLISH        "GSPEED: "
+
+REFERENCE           "ATTEMPTS"
+LANG_ENGLISH        "ATTEMPTS: "
+
+REFERENCE           "YES"
+LANG_ENGLISH        "YES"
+
+REFERENCE           "NO"
+LANG_ENGLISH        "NO"
+
+REFERENCE           "INTRODUCE"
+LANG_ENGLISH        "SONGS AUTO-TIMER V"
+
+REFERENCE           "NETWORK_FRAME"
+LANG_ENGLISH        "NETWORK FRAME: "
+
+REFERENCE           "LAUNCHER"
+LANG_ENGLISH        "CLIENT: "
+
+REFERENCE           "SELECTION"
+LANG_ENGLISH        "SELECTED SONG: "
+
+REFERENCE           "NO_SELECTION"
+LANG_ENGLISH        "No split selected. Select a split using '/split' command. Then '/fast_restart' the game."
+
+REFERENCE           "WARNING_GSPEED"
+LANG_ENGLISH        "GSPEED CHANGED "
+
+REFERENCE           "WARNING_HOTJOIN"
+LANG_ENGLISH        "HOTJOIN DETECTED"
+
+REFERENCE           "SPLIT_METEOR_FIRST"
+LANG_ENGLISH        "First Meteor"
+
+REFERENCE           "SPLIT_METEOR_SECOND"
+LANG_ENGLISH        "Second Meteor"
+
+REFERENCE           "SPLIT_PHONE_FIRST"
+LANG_ENGLISH        "First Phone"
+
+REFERENCE           "SPLIT_PHONE_SECOND"
+LANG_ENGLISH        "Second Phone"
+
+REFERENCE           "SPLIT_TEDDY_FIRST"
+LANG_ENGLISH        "First Teddy"
+
+REFERENCE           "SPLIT_TEDDY_SECOND"
+LANG_ENGLISH        "Second Teddy"
+
+REFERENCE           "SPLIT_NO_MANS_LAND"
+LANG_ENGLISH        "No Man's Land"
+
+REFERENCE           "SPLIT_POWER"
+LANG_ENGLISH        "Power"
+
+REFERENCE           "SPLIT_BREACH_11"
+LANG_ENGLISH        "Breach Tunnel 11"
+
+REFERENCE           "SPLIT_BREACH_6"
+LANG_ENGLISH        "Breach Tunnel 6"
+
+REFERENCE           "SPLIT_BARREL_FIRST"
+LANG_ENGLISH        "First Barrel"
+
+REFERENCE           "SPLIT_BARREL_SECOND"
+LANG_ENGLISH        "Second Barrel"
+
+REFERENCE           "SPLIT_HELP_DOOR"
+LANG_ENGLISH        "Help Doors"
+
+REFERENCE           "SPLIT_TOILET"
+LANG_ENGLISH        "Reached Toilet"
+
+REFERENCE           "SPLIT_SPAWN_DOOR"
+LANG_ENGLISH        "Spawn Doors"
+
+REFERENCE           "SPLIT_COMMS_DOOR"
+LANG_ENGLISH        "Comms Doors"
+
+REFERENCE           "SPLIT_TUBE"
+LANG_ENGLISH        "First Tube"
+
+REFERENCE           "SPLIT_HANGAR"
+LANG_ENGLISH        "Reached Hangar"
+
+
+ENDMARKER
