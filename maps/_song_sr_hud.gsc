@@ -117,8 +117,44 @@ TimerHud()
 	hud_timer.foreground = 1;
 	hud_timer.color = (1, 0.8, 1);
 
-	hud_timer SetTimerUp(0);
     self thread ColorChangeWatcher(hud_timer);
+
+    // Time offset for initial Ascension lander
+    if (isDefined(level.OFFSET_LANDER_TIME) && level.OFFSET_LANDER_TIME && IsAscension())
+    {
+        while (!flag("lander_grounded"))
+        {
+            hud_timer SetTimerUp(0);
+            wait 0.05;
+        }
+
+        level.start_timestamp = int(getTime());
+    }
+
+	hud_timer SetTimerUp(0);
+}
+
+AscensionMapTimer()
+{
+    if (!IsAscension())
+        return;
+
+	hud_ascension_timer = NewHudElem();
+	hud_ascension_timer.horzAlign = "right";
+	hud_ascension_timer.vertAlign = "top";
+	hud_ascension_timer.alignX = "right";
+	hud_ascension_timer.alignY = "top";
+	hud_ascension_timer.x = -25;
+	hud_ascension_timer.y = 49;
+	hud_ascension_timer.fontScale = 1.1;
+	hud_ascension_timer.alpha = 0.5;
+	hud_ascension_timer.hidewheninmenu = 1;
+	hud_ascension_timer.foreground = 1;
+	hud_ascension_timer.color = (1, 0.8, 1);
+
+    self thread ColorChangeWatcher(hud_ascension_timer);
+
+	hud_ascension_timer SetTimerUp(0);
 }
 
 AttemptsMain()

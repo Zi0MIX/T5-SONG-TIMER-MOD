@@ -4,7 +4,7 @@
 Mod support ends with version 3.0, i do not agree with the community decision of allowing Plutonium for competitive song games, therefore i've decided to stop supporting it. I may fix some critical bugs if any occur, but features or non-critical bugs won't be worked on. I may accept pull requests if they preserve ruleset integrity.
 
 ### Timing rules
-- Start position: When screen fades in
+- Start position: When screen fades in, besides Ascension where timer starts after players are freed from the lander
 - Finish position: Immidiately after all conditions required for playing the music are met
 
 ### Instalation
@@ -90,6 +90,7 @@ You have to pre-select song for Moon, otherwise timing functions won't work. Do 
 - Hud color can now be changed via `hud_color` dvar
 - Dvars don't reset between game sessions, so they can be set in the config
 - Velocity meter can now be resized using `velocity_size` dvar (takes values between 1.0 and 4.0)
+- Timing rules changed for Ascension, now times are calculated from when players are freed from the lander
 
 # Translations
 An attempt was made to make the mod have multiple language support, that however failed, you can read about in the translations doc in /Translations directory

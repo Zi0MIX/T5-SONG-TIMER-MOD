@@ -15,6 +15,7 @@ SongSrInit()
     level thread Welcome();
     level thread SongInit();
     level thread TimerColorController();
+    level thread AscensionMapTimer();
     level thread TimerHud();
     level thread AttemptsMain();
     // level thread DisplayBlocker();
@@ -236,6 +237,7 @@ ModSetup()
     level.WAIT_FOR_8BIT = true;
     level.SONG_DEBUG = false;
     level.VALIDATE_NETWORK_FRAME = true;
+    level.OFFSET_LANDER_TIME = true;
 
     level.playing_songs = 0;
     level.longest_splits = 0;
