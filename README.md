@@ -11,10 +11,10 @@ Mod support ends with version 3.0, i do not agree with the community decision of
 How to install the mod.
 
 #### Steam
-- [GameMod](https://github.com/Nukem9/LinkerMod/releases/tag/v1.3.2) is **required** for this mod to work. Simply put most recent release in `Mods` folder inside your BO1 folder. Please reffer to [Google](https://www.google.com/search?q=black+ops+1+%22gamemod%22+installation) if you do not know how to install GameMod to your BO1. No it won't get you banned and it won't screw your game in any way. [Video tutorial](https://youtu.be/k92N0RlBDBk) by Skimpy.
+- [GameMod](https://github.com/Nukem9/LinkerMod/releases/tag/v1.3.2) is **required** for this mod to work. Simply unzip the most recent release and put it in `Mods` folder inside your BO1 folder. Please reffer to [Google](https://www.google.com/search?q=black+ops+1+%22gamemod%22+installation) if you do not know how to install GameMod to your BO1. No it won't get you banned and it won't screw your game in any way. [Video tutorial](https://youtu.be/k92N0RlBDBk) by Skimpy.
 
 #### Plutonium
-- Create `mods` folder in `\AppData\Local\Plutonium\storage\t5` and put most recent release there.
+- Create `mods` folder in `\AppData\Local\Plutonium\storage\t5` and put unzipped directory from most recent release there.
 
 ### Features
 - The mod is built for steam, however it succesfully launches on Plutonium. I cannot guarantee that all the functions work properly.
