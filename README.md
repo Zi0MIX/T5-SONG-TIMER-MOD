@@ -91,6 +91,7 @@ You have to pre-select song for Moon, otherwise timing functions won't work. Do 
 - Dvars don't reset between game sessions, so they can be set in the config
 - Velocity meter can now be resized using `velocity_size` dvar (takes values between 1.0 and 4.0)
 - Timing rules changed for Ascension, now times are calculated from when players are freed from the lander
+- Fixed wrong label for 2nd split on Ascension
 
 # Translations
-An attempt was made to make the mod have multiple language support, that however failed, you can read about in the translations doc in /Translations directory
+An attempt was made to make the mod have multiple language support, that however failed, you can read about in the translations doc in /Translations directory on GitHub

@@ -657,7 +657,7 @@ SpawnSongs()
         abracadavre = spawnStruct();
         abracadavre.title = "Abracadavre";
         abracadavre.func = ::SongWatcher;
-        abracadavre.splits = array(&"SONGS_SPLIT_TEDDY_FIRST", &"SONGS_SPLIT_TEDDY_FIRST");
+        abracadavre.splits = array(&"SONGS_SPLIT_TEDDY_FIRST", &"SONGS_SPLIT_TEDDY_SECOND");
         all_songs[all_songs.size] = abracadavre;
     }
 
